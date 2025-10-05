@@ -1,0 +1,11 @@
+{
+    "name": "CmsErp",
+    "alias": "cmserp",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CmsErp\\Providers\\CmsErpServiceProvider"
+    ],
+    "files": []
+}

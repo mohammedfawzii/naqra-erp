@@ -1,0 +1,11 @@
+{
+    "name": "AttendanceTracking",
+    "alias": "attendancetracking",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\AttendanceTracking\\Providers\\AttendanceTrackingServiceProvider"
+    ],
+    "files": []
+}
