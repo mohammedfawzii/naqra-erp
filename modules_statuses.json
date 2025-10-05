@@ -12,5 +12,6 @@
     "Benefit": true,
     "Exit": true,
     "ExitManagement": true,
-    "Compliance": true
+    "Compliance": true,
+    "Auth": true
 }

@@ -10,19 +10,35 @@ use Modules\CmsErp\Models\Language;
 use Modules\CmsErp\Models\Nationality;
 use Modules\CmsErp\Models\SecurityQuestions;
 use Modules\Facilities\Models\InfoFacilities;
-
-class User extends Authenticatable
-{
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+ use Tymon\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements JWTSubject
+ 
+ {    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+  
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user_id' =>$this->id,
+            'user_name' =>$this->userName,
+            'db_name' =>$this->domine ? $this->domine->db_name : null,
+        ];
+    }
+ 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
 
-
+ 
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,14 +59,19 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+         'is_verified' => 'boolean',
         ];
     }
+ 
+ 
+        
+    
     public function getTermsAcceptedAttribute($value)
     {
         return (bool) $value;
     }
 
-    // User columns 
+     // User columns 
     public function columns()
     {
         return $this->hasMany(InfoFacilities::class, 'infoable_type', 'User');
@@ -73,4 +94,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(SecurityQuestions::class, 'securityQuestion_id');
     }
-}
+ 
+
+     public function domine()
+    {
+        return $this->hasOne(Tenant::class, 'user_id', 'id');
+    }
+
+ }
