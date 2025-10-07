@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('competency_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // Employee in Employee
+            $table->integer('employee_id'); // Employee in Employee
             $table->string('competency');               
             $table->string('competency_rating')->nullable();    
             $table->string('target_competency')->nullable();

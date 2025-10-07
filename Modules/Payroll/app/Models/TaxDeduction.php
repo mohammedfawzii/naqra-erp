@@ -4,7 +4,7 @@ namespace Modules\Payroll\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\Employee;
 
 // use Modules\Payroll\Database\Factories\TaxDeductionFactory;
 
@@ -25,7 +25,7 @@ class TaxDeduction extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employeeinfo::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
 

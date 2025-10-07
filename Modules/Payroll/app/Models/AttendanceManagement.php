@@ -5,7 +5,7 @@ namespace Modules\Payroll\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\CmsErp\Models\Attendance;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\Employee;
 
 // use Modules\Payroll\Database\Factories\AttendanceManagementFactory;
 
@@ -34,7 +34,7 @@ class AttendanceManagement extends Model
     }
     public function employee()
     {
-        return $this->belongsTo(Employeeinfo::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
 

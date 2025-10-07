@@ -11,35 +11,35 @@ class TrainingEvaluationSeeder extends Seeder
     {
         $training_evaluations = [
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'course_id' => 1,
                 'rating' => 1,
                 'feedback' => 'Sample feedback 1',
                 'satisfaction_level' => 'very_low',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'course_id' => 2,
                 'rating' => 1,
                 'feedback' => 'Sample feedback 2',
                 'satisfaction_level' => 'very_low',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'course_id' => 1,
                 'rating' => 1,
                 'feedback' => 'Sample feedback 3',
                 'satisfaction_level' => 'very_low',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'course_id' => 1,
                 'rating' => 1,
                 'feedback' => 'Sample feedback 4',
                 'satisfaction_level' => 'very_low',
             ],
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'course_id' => 1,
                 'rating' => 1,
                 'feedback' => 'Sample feedback 5',

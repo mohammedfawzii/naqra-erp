@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('compensation_management', function (Blueprint $table) {
             $table->id();
-            $table->Integer('employeeinfo_id'); 
+            $table->Integer('employee_id'); 
             $table->enum('compensation_type', ['Salary', 'Bonus', 'Allowance', 'Other'])->default('Salary');
             $table->decimal('compensation_value')->nullable();
             $table->date('issue_date')->nullable();

@@ -16,7 +16,7 @@ class AttendanceManagementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'attendance_date' => 'required|date',
             'time_in' => 'required|integer|exists:attendances,id',
             'time_out' => 'required|integer|exists:attendances,id',

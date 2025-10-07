@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('certification_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->string('certification_name');
             $table->date('issue_date');
             $table->date('expiration_date')->nullable();

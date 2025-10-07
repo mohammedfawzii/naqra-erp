@@ -16,7 +16,7 @@ class BaseStoreRequest extends FormRequest
     protected function baseRules(): array
     {
         return [
-          'employeeinfo_id' => 'required|integer|exists:employeeinfos,id',
+          'employee_id' => 'required|integer|exists:employees,id',
           'files'   => 'nullable|array', // Ensure 'files' is an array
           'files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xlsx,xls|max:5120',
 

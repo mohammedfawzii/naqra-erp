@@ -37,7 +37,7 @@ class RequestGenerator
             $rules = [];
             $routeParam = Str::camel($model); // ex: Nationality => nationality
 
-             $skipColumns = ['employee_id', 'attendance_attachments_id','recruitment_attachments_id','employeeinfo_id'];
+             $skipColumns = ['employee_id', 'attendance_attachments_id','recruitment_attachments_id','employee_id'];
 
             foreach ($columns as $column) {
                 if (in_array($column, ['id', 'created_at', 'updated_at', 'deleted_at','recruitment_attachments_id'])) continue;

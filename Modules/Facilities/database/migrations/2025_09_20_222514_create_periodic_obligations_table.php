@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('periodic_obligations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('facility_id');
+            $table->unsignedBigInteger('facility_id')->nullable();
             $table->date('zakat_due_date')->nullable();
             $table->date('zakat_reminder_date')->nullable();
             $table->date('tax_declaration_due_date')->nullable();

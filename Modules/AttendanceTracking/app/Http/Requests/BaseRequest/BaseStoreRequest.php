@@ -16,7 +16,7 @@ class BaseStoreRequest extends FormRequest
     protected function baseRules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'attendance_attachments_id' => 'required|integer|exists:attendance_tracking_attachments,reference_number',
 
         ];

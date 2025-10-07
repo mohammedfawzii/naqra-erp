@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('ai_driven_performance_insights', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // Employee in Employee
+            $table->integer('employee_id'); // Employee in Employee
             $table->text('ai_recommendation')->nullable(); //
             $table->decimal('probability_score', 5, 2)->nullable(); //
             $table->date('analysis_date')->nullable();

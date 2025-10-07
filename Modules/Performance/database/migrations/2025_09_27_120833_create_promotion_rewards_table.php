@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('promotion_rewards', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->string('reward_type')->nullable();
             // $table->string('reward_type')->nullable();
             $table->date('reward_date')->nullable();

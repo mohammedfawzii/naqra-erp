@@ -16,7 +16,7 @@ class BaseUpdateRequest extends FormRequest
     protected function baseRules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'attendance_attachments_id' => 'sometimes|required|integer|exists:attendance_tracking_attachments,reference_number',
         ];
     }

@@ -16,7 +16,7 @@ class LoanDeductionsUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'loan_type_id' => 'sometimes|required|integer|exists:loan_types,id',
             'deduction_percentage' => 'nullable|sometimes|numeric',
             'deduction_amount' => 'sometimes|required|numeric',

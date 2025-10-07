@@ -14,7 +14,7 @@ return new class extends Migration
 
          Schema::create('internal_training_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->integer('course_id'); // course id
             $table->string('trainer_name')->nullable();
             $table->string('location')->nullable();

@@ -3,7 +3,7 @@
 namespace Modules\Performance\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Performance\Database\Factories\GoalFactory;
 

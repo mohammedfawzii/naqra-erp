@@ -16,7 +16,7 @@ class LoanDeductionsStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'loan_type_id' => 'required|integer|exists:loan_types,id',
             'deduction_percentage' => 'nullable|numeric',
             'deduction_amount' => 'required|numeric',

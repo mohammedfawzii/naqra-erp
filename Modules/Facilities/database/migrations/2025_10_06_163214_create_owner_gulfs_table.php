@@ -12,11 +12,12 @@ return new class extends Migration {
     {
         Schema::create('owner_gulfs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('owner_id')->nullable();
 
-            $table->json('first_name_ar')->nullable();
-            $table->json('second_name_ar')->nullable();
-            $table->json('third_name_ar')->nullable();
-            $table->json('family_name_ar')->nullable();
+            $table->json('first_name')->nullable();
+            $table->json('second_name')->nullable();
+            $table->json('third_name')->nullable();
+            $table->json('family_name')->nullable();
 
             $table->enum('gender', ['male', 'female'])->default('male');
             $table->date('birth_date')->nullable();
@@ -42,8 +43,8 @@ return new class extends Migration {
             $table->text('note')->nullable();
             $table->timestamps();
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
-            $table->foreign('nationality_id')->references('id')->on('nationality')->onDelete('cascade');
-          
+            $table->foreign('nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
+
         });
     }
 

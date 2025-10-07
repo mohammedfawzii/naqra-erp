@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('end_of_service_benefits_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->integer('service_duration')->nullable();   // مدة الخدمة (بالسنوات)
             $table->date('end_date')->nullable();              // تاريخ النهاية
             $table->decimal('end_of_service_value')->nullable(); // مستحقات النهاية

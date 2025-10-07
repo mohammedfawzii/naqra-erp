@@ -16,7 +16,7 @@ class EndofServiceCalculationsUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'service_duration' => 'sometimes|required|integer',
             'end_of_service_amount' => 'sometimes|required|numeric',
             'end_date' => 'sometimes|required|date',

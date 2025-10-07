@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-             $table->integer('employeeinfo_id');
+             $table->integer('employee_id');
             $table->string('type')->nullable();
             $table->text('comment')->nullable();
             $table->date('feedback_date')->nullable();

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('remote_work_compliances', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // معرف الموظف  
+            $table->integer('employee_id'); // معرف الموظف  
             $table->enum('compliance_type', ['Security', 'Data Privacy', 'Productivity', 'Policy']); // نوع الامتثال
             $table->enum('compliance_status', ['Compliant', 'Non-Compliant', 'Pending']); // حالة الامتثال
             $table->date('review_date')->nullable(); // تاريخ المراجعة

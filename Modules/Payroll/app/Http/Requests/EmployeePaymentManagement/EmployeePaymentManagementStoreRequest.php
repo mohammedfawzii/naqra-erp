@@ -16,7 +16,7 @@ class EmployeePaymentManagementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'bank_id' => 'required|integer|exists:banks,id',
             'payment_method_id' => 'required|integer|exists:payment_methods,id',
             'bank_account_number' => 'required|string|max:255',

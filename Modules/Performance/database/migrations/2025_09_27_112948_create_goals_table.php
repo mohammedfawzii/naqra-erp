@@ -13,7 +13,7 @@ return new class extends Migration {
 
         Schema::create('goals', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id') ; //Employeeinfo
+            $table->integer('employee_id') ; //employee
             $table->string('goal_name');
             $table->text('goal_description')->nullable();
             $table->unsignedTinyInteger('goal_measure')->nullable();

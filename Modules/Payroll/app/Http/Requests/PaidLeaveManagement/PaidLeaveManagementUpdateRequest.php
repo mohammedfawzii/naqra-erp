@@ -16,7 +16,7 @@ class PaidLeaveManagementUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'holidays_lists_id' => 'sometimes|required|string|max:255|exists:holidays_lists,id',
             'leave_balance' => 'sometimes|required|numeric',
             'leave_date' => 'sometimes|required|date',
