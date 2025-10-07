@@ -10,21 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('digital_facilities', function (Blueprint $table) {
+        Schema::create('branch_activity_specifics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('branch_id');
-            $table->string('name');
-            $table->string('unified_national_number');
-            $table->string('tax_number');
-            $table->integer('commercial_record_value');
-            $table->integer('capital');
-            $table->date('start_date');
-            $table->date('annual_confirmation_date');
-            $table->date('financial_year_start');
-            $table->date('financial_year_end');
+            $table->unsignedBigInteger('branch_activity_id');
+            $table->unsignedBigInteger('activity_specific_id');
             $table->timestamps();
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-
+            $table->foreign('branch_activity_id')->references('id')->on('branch_activities')->onDelete('cascade');
+            $table->foreign('activity_specific_id')->references('id')->on('activity_specifics')->onDelete('cascade');
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('digital_facilities');
+        Schema::dropIfExists('branch_activity_specifics');
     }
 };
