@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('subscription_facilities', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('branch_id')->nullable();
             $table->integer('subscription_id');
             $table->integer('subscription_types_id');
             $table->string('invoice_number');
@@ -21,9 +21,8 @@ return new class extends Migration
             $table->date('end_date');
             $table->date('reminder_date')->nullable();
             $table->text('notes')->nullable();
-            $table->integer('facility_attachments_id');
-
             $table->timestamps();
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
         });
     }
 

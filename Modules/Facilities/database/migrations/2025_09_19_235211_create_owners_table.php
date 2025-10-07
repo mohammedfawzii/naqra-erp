@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,17 +12,27 @@ return new class extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->unsignedBigInteger('owner_type_id');
-            $table->string('national_id_number');
-            $table->unsignedBigInteger('job_title_id');
-            $table->date('date_of_birth')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedBigInteger('city_id');
-            $table->text('company_details')->nullable();
+
+            $table->unsignedBigInteger('facility_id')->nullable();
+
+            $table->enum('owner_type', [
+                'association',        // جمعية
+                'foreign_company',    // شركة أجنبية
+                'saudi_individual',   // فرد سعودي
+                'gulf_individual',    // فرد خليجي
+                'resident_individual',// فرد مقيم
+                'saudi_company',      // شركة سعودية
+                'gulf_company',       // شركة خليجية
+                'endowment'           // وقف
+            ])->nullable();
+
             $table->timestamps();
-         });
+
+            $table->foreign('facility_id')
+                ->references('id')
+                ->on('facilities')
+                ->onDelete('set null');
+        });
     }
 
     /**

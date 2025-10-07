@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('medical_insurances_facilities', function (Blueprint $table) {
             $table->id();
+            $table->string('avater')->nullable();
             $table->string('company_name');
             $table->string('policy_number')->unique();
             $table->integer('medical_insurance_categories_id');

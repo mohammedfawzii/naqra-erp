@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('periodic_obligations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('facility_id');
             $table->date('zakat_due_date')->nullable();
             $table->date('zakat_reminder_date')->nullable();
-
             $table->date('tax_declaration_due_date')->nullable();
             $table->date('tax_declaration_reminder_date')->nullable();
-
             $table->date('salary_due_date')->nullable();
             $table->date('salary_reminder_date')->nullable();
-            $table->integer('facility_attachments_id');
-
-
             $table->timestamps();
+            $table->foreign('facility_id')
+                ->references('id')
+                ->on('facilities')
+                ->onDelete('set null');
         });
     }
 
