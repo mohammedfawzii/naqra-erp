@@ -37,9 +37,7 @@ class ColumnSyncService
         $fields = [];
 
         foreach ($columns as $col) {
-            if (in_array($col, $skip)) {
-                continue;
-            }
+            if (in_array($col, $skip)) continue;
 
             $arabicKey   = $tr->translate($col);
             $arabicLabel = $tr->translate(Str::title(str_replace('_', ' ', $col)));
@@ -52,8 +50,10 @@ class ColumnSyncService
             ];
         }
 
-        $path = module_path($module, "Database/Seeders");
+        // تعديل المسار لاستخدام المجلد الموجود
+        $path = base_path("Modules/{$module}/database/seeders");
 
+        // لو المجلد مش موجود نعمله (نادراً)
         if (!File::exists($path)) {
             File::makeDirectory($path, 0755, true);
         }
@@ -62,7 +62,7 @@ class ColumnSyncService
         $namespace  = "Modules\\{$module}\\Database\\Seeders";
         $tableName  = 'columns_' . Str::snake(Str::pluralStudly($module));
 
-         if (!File::exists($filePath)) {
+        if (!File::exists($filePath)) {
             $arrayString = self::arrayToShortSyntax([$model => $fields], 2);
 
             $seederContent = <<<PHP
@@ -100,7 +100,7 @@ PHP;
             File::put($filePath, $seederContent);
 
         } else {
-             $oldContent = File::get($filePath);
+            $oldContent = File::get($filePath);
 
             if (strpos($oldContent, "'{$model}'") === false) {
                 $inject = "        '{$model}' => " . self::arrayToShortSyntax($fields, 2) . ",\n";
@@ -120,43 +120,42 @@ PHP;
 
     /**
      * Convert array to short syntax for seeder
-     */private static function arrayToShortSyntax(array $array, int $indent = 0): string
-{
-    $indentStr = str_repeat('    ', $indent);
-    $nextIndentStr = str_repeat('    ', $indent + 1);
+     */
+    private static function arrayToShortSyntax(array $array, int $indent = 0): string
+    {
+        $indentStr = str_repeat('    ', $indent);
+        $nextIndentStr = str_repeat('    ', $indent + 1);
 
-     if (!self::isAssoc($array) && self::isFlatArray($array)) {
-        $items = array_map(fn($v) => var_export($v, true), $array);
-        return '[' . implode(', ', $items) . ']';
-    }
+        if (!self::isAssoc($array) && self::isFlatArray($array)) {
+            $items = array_map(fn($v) => var_export($v, true), $array);
+            return '[' . implode(', ', $items) . ']';
+        }
 
-     if (self::isAssoc($array)) {
+        if (self::isAssoc($array)) {
+            $items = [];
+            foreach ($array as $key => $value) {
+                $items[] = $nextIndentStr . var_export($key, true) . ' => ' . self::arrayToShortSyntax($value, $indent + 1);
+            }
+            return "[\n" . implode(",\n", $items) . "\n{$indentStr}]";
+        }
+
         $items = [];
-        foreach ($array as $key => $value) {
-            $items[] = $nextIndentStr . var_export($key, true) . ' => ' . self::arrayToShortSyntax($value, $indent + 1);
+        foreach ($array as $value) {
+            $items[] = $nextIndentStr . self::arrayToShortSyntax($value, $indent + 1);
         }
         return "[\n" . implode(",\n", $items) . "\n{$indentStr}]";
     }
 
-     $items = [];
-    foreach ($array as $value) {
-        $items[] = $nextIndentStr . self::arrayToShortSyntax($value, $indent + 1);
+    private static function isAssoc(array $arr): bool
+    {
+        return array_keys($arr) !== range(0, count($arr) - 1);
     }
-    return "[\n" . implode(",\n", $items) . "\n{$indentStr}]";
-}
 
-private static function isAssoc(array $arr): bool
-{
-    return array_keys($arr) !== range(0, count($arr) - 1);
-}
-
-private static function isFlatArray(array $arr): bool
-{
-    foreach ($arr as $v) {
-        if (is_array($v)) {
-            return false;
+    private static function isFlatArray(array $arr): bool
+    {
+        foreach ($arr as $v) {
+            if (is_array($v)) return false;
         }
+        return true;
     }
-    return true;
-}
 }

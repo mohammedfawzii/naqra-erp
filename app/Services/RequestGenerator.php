@@ -156,13 +156,14 @@ class RequestGenerator
             $rulesString .= "            '{$col}' => '{$r}',\n";
         }
 
-        $baseClass = $isUpdate ? 'BaseUpdateRequest' : 'BaseStoreRequest';
+        $baseClass = $isUpdate ? 'UpdateBaseRequest' : 'StoreBaseRequest';
 
         return "<?php
 
 namespace Modules\\{$module}\\Http\\Requests\\{$modelName};
 
-use App\Http\Requests\BaseRequest\\{$baseClass};
+ use Modules\Employee\Http\Requests\BaseRequest\\{$baseClass};
+
 
 class {$className} extends {$baseClass}
 {

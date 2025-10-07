@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('attendancesss', function (Blueprint $table) {
             $table->id();
 
             $table->integer('basic_hours');

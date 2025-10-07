@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->json('list')->nullable();
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('holiday_type')->references('id')->on('holiday_list')->onDelete('cascade');
+            $table->foreign('holiday_type')->references('id')->on('holiday_lists')->onDelete('cascade');
         });
     }
 

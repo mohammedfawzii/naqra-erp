@@ -25,8 +25,10 @@ class InfoSyncService
         $englishDesc = "Description for {$englishTitle}";
         $arabicDesc  = $tr->translate($englishDesc);
 
-        $path = module_path($module, "Database/Seeders");
+        // تعديل المسار لاستخدام المجلد الموجود database/seeders
+        $path = base_path("Modules/{$module}/database/seeders");
 
+        // لو المجلد مش موجود نعمله (نادراً جداً)
         if (!File::exists($path)) {
             File::makeDirectory($path, 0755, true);
         }
@@ -44,7 +46,7 @@ class InfoSyncService
             ],
 PHP;
 
-         if (!File::exists($filePath)) {
+        if (!File::exists($filePath)) {
             $seederContent = <<<PHP
 <?php
 
@@ -75,7 +77,7 @@ class InfoSeeder extends Seeder
 PHP;
             File::put($filePath, $seederContent);
         } else {
-             $oldContent = File::get($filePath);
+            $oldContent = File::get($filePath);
 
             if (strpos($oldContent, "'infoable_type' => '{$modelName}'") === false) {
                 $newContent = preg_replace(

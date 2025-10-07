@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('branch_id')->nullable();
-            $table->boolean('is_suadi')->default(true);
+            $table->boolean('is_saudi')->default(true);
             $table->timestamps();
         });
     }
