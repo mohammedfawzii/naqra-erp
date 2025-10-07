@@ -11,6 +11,10 @@ class InfoSeeder extends Seeder
     {
         $records = [
             [
+                'infoable_type' => 'EmployeeAddress',
+                'title' => ['en' => 'Employeeaddress', 'ar' => 'عنوان الموظف'],
+                'desc'  => ['en' => 'Description for Employeeaddress', 'ar' => 'وصف لعنوان الموظف'],
+            ],            [
                 'infoable_type' => 'EmployeeDebendent',
                 'title' => ['en' => 'Employeedebendent', 'ar' => 'يعتمد على الموظف'],
                 'desc'  => ['en' => 'Description for Employeedebendent', 'ar' => 'وصف الموظف المعتمد'],

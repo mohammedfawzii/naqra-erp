@@ -2,6 +2,9 @@
 
 namespace Modules\Employee\Providers;
 
+use Modules\Employee\Repositories\EmployeeAddress\EmployeeAddressRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeAddress\EmployeeAddressRepository;
+
 use Modules\Employee\Repositories\EmployeeDebendent\EmployeeDebendentRepositoryInterface;
 use Modules\Employee\Repositories\EmployeeDebendent\EmployeeDebendentRepository;
 
@@ -50,6 +53,7 @@ $this->app->register(EventServiceProvider::class);
         $this->app->bind(BaseInformationEmployeeRepositoryInterface::class, BaseInformationEmployeeRepository::class);
         $this->app->bind(PersonalInformationEmployeeRepositoryInterface::class, PersonalInformationEmployeeRepository::class);
         $this->app->bind(EmployeeDebendentRepositoryInterface::class, EmployeeDebendentRepository::class);
+        $this->app->bind(EmployeeAddressRepositoryInterface::class, EmployeeAddressRepository::class);
 }
 
     /**

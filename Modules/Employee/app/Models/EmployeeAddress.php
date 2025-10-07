@@ -2,11 +2,13 @@
 
 namespace Modules\Employee\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+ use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\CmsErp\Models\City;
+use Modules\CmsErp\Models\Country;
+
 // use Modules\Employee\Database\Factories\EmployeeAddressFactory;
 
-class EmployeeAddress extends Model
+class EmployeeAddress extends BaseModel
 {
     use HasFactory;
 
@@ -19,4 +21,16 @@ class EmployeeAddress extends Model
     // {
     //     // return EmployeeAddressFactory::new();
     // }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
 }

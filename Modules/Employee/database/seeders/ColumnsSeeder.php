@@ -12,6 +12,22 @@ class ColumnsSeeder extends Seeder
         $now = now()->toDateTimeString();
 
         $columns = [
+        'EmployeeAddress' => [
+            ['employee_id', 'الموظف', 'Employee Id', 'معرف الموظف'],
+            ['type', 'يكتب', 'Type', 'يكتب'],
+            ['country_id', 'Country_id', 'Country Id', 'معرف البلد'],
+            ['city_id', 'city_id', 'City Id', 'معرف المدينة'],
+            ['neighborhood', 'حيّ', 'Neighborhood', 'حيّ'],
+            ['street', 'شارع', 'Street', 'شارع'],
+            ['building_number', 'Building_number', 'Building Number', 'رقم المبنى'],
+            ['building_type', 'Building_type', 'Building Type', 'نوع المبنى'],
+            ['building_name', 'Building_name', 'Building Name', 'اسم المبنى'],
+            ['postal_code', 'رمز بريدي', 'Postal Code', 'رمز بريدي'],
+            ['po_box', 'بوبوكس', 'Po Box', 'صندوق البريد'],
+            ['notes', 'ملحوظات', 'Notes', 'ملحوظات'],
+            ['same_address', 'نفس_العنوان', 'Same Address', 'نفس العنوان']
+        ],
+
         'EmployeeDebendent' => [
             ['employee_id', 'الموظف', 'Employee Id', 'معرف الموظف'],
             ['full_name', 'full_name', 'Full Name', 'الاسم الكامل'],
