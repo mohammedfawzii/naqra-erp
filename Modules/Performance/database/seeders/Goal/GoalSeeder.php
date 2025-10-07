@@ -10,7 +10,7 @@ class GoalSeeder extends Seeder
     {
         $goals = [
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'goal_name' => 'Improve Sales Performance',
                 'goal_description' => 'Increase sales by 20% over the next quarter.',
                 'goal_measure' => 20,
@@ -20,7 +20,7 @@ class GoalSeeder extends Seeder
                 'goal_priority' => 'high',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'goal_name' => 'Enhance Customer Satisfaction',
                 'goal_description' => 'Reach 95% positive customer feedback.',
                 'goal_measure' => 95,
@@ -30,7 +30,7 @@ class GoalSeeder extends Seeder
                 'goal_priority' => 'medium',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'goal_name' => 'Reduce Employee Turnover',
                 'goal_description' => 'Decrease turnover by 10% in one year.',
                 'goal_measure' => 10,
@@ -43,7 +43,7 @@ class GoalSeeder extends Seeder
 
         foreach ($goals as $data) {
             Goal::firstOrCreate([
-                'employeeinfo_id' => $data['employeeinfo_id'],
+                'employee_id' => $data['employee_id'],
                 'goal_name' => $data['goal_name'],
             ], $data);
         }

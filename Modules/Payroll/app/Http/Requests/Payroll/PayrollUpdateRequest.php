@@ -16,7 +16,7 @@ class PayrollUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'basic_salary' => 'sometimes|required|numeric',
             'allowances' => 'sometimes|required|numeric',
             'overtime_hours' => 'sometimes|required|integer',

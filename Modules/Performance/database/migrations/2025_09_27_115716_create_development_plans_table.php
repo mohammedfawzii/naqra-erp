@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('development_plans', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->text('description')->nullable();
             $table->string('targeted_skills')->nullable();
             $table->date('start_date')->nullable();

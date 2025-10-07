@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('external_learning_platform_integrations', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
              $table->string('platform_name');
             $table->enum('integration_status', ['active', 'failed', 'pending'])->default('pending');
             $table->timestamp('last_sync_date')->nullable();

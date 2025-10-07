@@ -5,7 +5,7 @@ namespace Modules\Payroll\Models;
 use Modules\CmsErp\Models\Currency;
 use Illuminate\Database\Eloquent\Model;
  use Modules\CmsErp\Models\PaymentMethod;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\employee;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 // use Modules\Payroll\Database\Factories\PayrollFactory;
@@ -23,7 +23,7 @@ class Payroll extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employeeinfo::class, 'employee_id','id');
+        return $this->belongsTo(employee::class, 'employee_id','id');
     }
 
 

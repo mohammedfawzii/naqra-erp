@@ -16,7 +16,7 @@ class PayrollProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'payment_date' => 'nullable|sometimes|date',
             'payroll_attachments_id' => 'sometimes|required|integer|exists:payroll_attachments,reference_number',
         ];

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('flexible_benefits_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->text('selected_benefits')->nullable();
             $table->decimal('benefits_cost', 12, 2)->nullable();
             $table->enum('selection_status', ['Pending', 'Confirmed'])->default('Pending');

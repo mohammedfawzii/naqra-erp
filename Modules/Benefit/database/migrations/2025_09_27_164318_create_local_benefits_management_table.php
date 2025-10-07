@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('local_benefits_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->enum('local_benefit_type', ['Health', 'Retirement', 'Allowance'])->default('Health');
             $table->enum('local_benefit_status', ['Active', 'Inactive'])->default('Active');
             $table->decimal('gosi_contribution')->nullable();

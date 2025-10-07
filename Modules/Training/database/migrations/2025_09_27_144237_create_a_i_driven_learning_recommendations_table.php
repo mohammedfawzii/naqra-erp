@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('a_i_driven_learning_recommendations', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
              $table->string('recommended_course');
             $table->text('recommendation_reason')->nullable();
             $table->unsignedTinyInteger('fit_score')->default(0);

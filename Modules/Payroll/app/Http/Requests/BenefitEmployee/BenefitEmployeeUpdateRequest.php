@@ -16,7 +16,7 @@ class BenefitEmployeeUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'benefit_types_id' => 'sometimes|required|integer|exists:benefit_types,id',
             'amount' => 'sometimes|required|numeric',
             'start_date' => 'nullable|sometimes|date',

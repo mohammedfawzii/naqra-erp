@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->date('evaluation_date');
             $table->unsignedTinyInteger('rating');
             $table->text('comments')->nullable();

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('variable_compensation_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->enum('variable_type', ['Bonus', 'Commission', 'Incentive'])->default('Bonus');
             $table->decimal('variable_value');
             $table->date('evaluation_date')->nullable();

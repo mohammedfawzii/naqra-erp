@@ -11,31 +11,31 @@ class GamificationForTrainingSeeder extends Seeder
     {
         $gamification_for_trainings = [
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'training_points' => 365,
                 'earned_rewards' => 'Sample earned_rewards 1',
                 'progress_level' => 'Sample progress_level 1',
             ],
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'training_points' => 26,
                 'earned_rewards' => 'Sample earned_rewards 2',
                 'progress_level' => 'Sample progress_level 2',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'training_points' => 431,
                 'earned_rewards' => 'Sample earned_rewards 3',
                 'progress_level' => 'Sample progress_level 3',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'training_points' => 347,
                 'earned_rewards' => 'Sample earned_rewards 4',
                 'progress_level' => 'Sample progress_level 4',
             ],
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'training_points' => 571,
                 'earned_rewards' => 'Sample earned_rewards 5',
                 'progress_level' => 'Sample progress_level 5',

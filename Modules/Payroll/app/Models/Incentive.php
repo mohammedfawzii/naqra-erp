@@ -5,7 +5,7 @@ namespace Modules\Payroll\Models;
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\employee;
 use Modules\Payroll\Models\IncentiveType;
 use Modules\Payroll\Models\IncentiveStatus;
 use Modules\Payroll\Models\PayrollAttachment;

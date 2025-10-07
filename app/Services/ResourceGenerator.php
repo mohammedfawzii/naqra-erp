@@ -47,7 +47,7 @@ class ResourceGenerator
     $fieldsString = "";
     $table = Str::snake(Str::pluralStudly($model));
 
-     $skipCols = ['id', 'created_at', 'updated_at', 'deleted_at', 'employee','employee_id','Attachments','attendanceAttachments','attendanceAttachments_id','employeeinfo','employeeinfo_id'];
+     $skipCols = ['id', 'created_at', 'updated_at', 'deleted_at', 'employee','employee_id','Attachments','attendanceAttachments','attendanceAttachments_id','employee','employee_id'];
 
     foreach ($columns as $col) {
          if (in_array($col, $skipCols)) {
@@ -63,7 +63,7 @@ class ResourceGenerator
             if (Schema::hasTable($relatedTable)) {
                 $relatedCols = Schema::getColumnListing($relatedTable);
                 $firstCol = collect($relatedCols)
-                    ->reject(fn($c) => in_array($c, ['id', 'created_at', 'updated_at', 'deleted_at', 'employee_id', 'employee','Attachments','attendanceAttachments','attendanceAttachments_id','employeeinfo','employeeinfo_id']))
+                    ->reject(fn($c) => in_array($c, ['id', 'created_at', 'updated_at', 'deleted_at', 'employee_id', 'employee','Attachments','attendanceAttachments','attendanceAttachments_id','employee','employee_id']))
                     ->first();
                 $priorityCols = ['name', 'title', 'full_name', 'company_name'];
                 $preferredCol = collect($priorityCols)->first(fn($pc) => in_array($pc, $relatedCols));
@@ -138,7 +138,7 @@ class {$model}Resource extends BaseResource
 
     $columns = Schema::getColumnListing($table);
 
-    $skipFunctions = ['attendanceAttachments', 'employee', 'employeeinfo','attachments','payrollAttachments'];
+    $skipFunctions = ['attendanceAttachments', 'employee', 'employee','attachments','payrollAttachments'];
 
     foreach ($columns as $col) {
         if (Str::endsWith($col, '_id')) {
@@ -197,8 +197,8 @@ private static function generateEnumsStub($module, $model, $table)
             }
         }
 
-        // ✅ Relations من *_id (مع تخطي employeeinfo_id)
-        if (Str::endsWith($col, '_id') && $col !== 'employeeinfo_id') {
+        // ✅ Relations من *_id (مع تخطي employee_id)
+        if (Str::endsWith($col, '_id') && $col !== 'employee_id') {
             $relation     = Str::camel(Str::replaceLast('_id', '', $col)); // ex: position
             $modelName    = Str::studly(Str::replaceLast('_id', '', $col)); // ex: Position
             $relatedTable = Str::snake(Str::pluralStudly($modelName));      // ex: positions

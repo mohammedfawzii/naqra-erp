@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('ai_driven_benefits_recommendations', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->string('recommended_benefit');
             $table->text('recommendation_reason')->nullable();
             $table->decimal('fit_score')->nullable();   

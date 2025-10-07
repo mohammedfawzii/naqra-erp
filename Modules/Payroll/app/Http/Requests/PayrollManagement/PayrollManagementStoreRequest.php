@@ -16,7 +16,7 @@ class PayrollManagementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'payroll_number' => 'required|string|max:255',
             'status' => 'required|in:paid,unpaid,pending',
             'payroll_date' => 'required|date',

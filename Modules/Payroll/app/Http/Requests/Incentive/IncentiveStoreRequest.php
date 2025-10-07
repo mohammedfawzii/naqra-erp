@@ -16,7 +16,7 @@ class IncentiveStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'incentive_types_id' => 'required|integer|exists:incentive_types,id',
             'amount' => 'required|numeric',
             'issue_date' => 'required|date',

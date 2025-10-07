@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('feedback360s', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->string('evaluator_name');
             $table->string('evaluator_designation')->nullable();
             $table->decimal('rating');

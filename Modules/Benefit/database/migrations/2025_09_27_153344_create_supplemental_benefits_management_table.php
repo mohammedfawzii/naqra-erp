@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('supplemental_benefits_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->string('supplemental_benefit_type');       // نوع الميزة الإضافية
             $table->decimal('benefit_value');
             $table->timestamps();

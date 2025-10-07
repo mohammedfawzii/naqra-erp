@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('learning_management_integrations', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // Employee in Employee
+            $table->integer('employee_id'); // Employee in Employee
             $table->string('learning_platform');           // منصة التعلم
             $table->string('integration_status')->nullable(); // حالة التكامل
             $table->string('suggested_course')->nullable();

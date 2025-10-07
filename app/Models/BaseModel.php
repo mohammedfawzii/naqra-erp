@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\employee;
 use Modules\Payroll\Models\PayrollAttachment;
 
 class BaseModel extends Model
@@ -11,7 +11,7 @@ class BaseModel extends Model
 
        public function employee()
     {
-        return $this->belongsTo(Employeeinfo::class, 'employee_id');
+        return $this->belongsTo(employee::class, 'employee_id');
     }
         public function payrollAttachments()
     {

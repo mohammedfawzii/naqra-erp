@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('licensing_and_certification_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->string('license_name');
             $table->date('renewal_date')->nullable();
             $table->enum('renewal_status', ['renewed', 'pending', 'expired'])->default('pending');

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('field_training_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->text('training_description');
             $table->string('training_location')->nullable();
             $table->integer('duration')->default(0);

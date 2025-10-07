@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('training_needs_assessments', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
              $table->text('needs');
             $table->enum('needs_priority', ['high', 'medium', 'low'])
                   ->default('medium');

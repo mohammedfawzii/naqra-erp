@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('employee_self_service_benefits', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->integer('benefit_id');                   // benefit
             $table->enum('request_status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->date('request_date')->nullable();

@@ -16,7 +16,7 @@ class BenefitEmployeeStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'benefit_types_id' => 'required|integer|exists:benefit_types,id',
             'amount' => 'required|numeric',
             'start_date' => 'nullable|date',

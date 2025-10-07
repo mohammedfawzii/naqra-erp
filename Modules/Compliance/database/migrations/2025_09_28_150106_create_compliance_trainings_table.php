@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('compliance_trainings', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // معرف الموظف
+            $table->integer('employee_id'); // معرف الموظف
             $table->string('training_name'); // اسم التدريب
             $table->date('training_starting_date'); // تاريخ بداية التدريب
             $table->date('training_ending_date'); // تاريخ انتهاء التدريب

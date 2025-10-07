@@ -108,7 +108,7 @@ class ColumnsSeeder extends Seeder
         'Goal' => [
             ['employee', 'موظف', 'Employee', 'موظف'],
             ['attendanceAttachments', 'مرفقات الحضور', 'Attendanceattachments', 'مرفقات الحضور'],
-            ['employeeinfo', 'الموظف', 'Employeeinfo', 'الموظف'],
+            ['employee', 'الموظف', 'employee', 'الموظف'],
             ['goal_name', 'الهدف', 'Goal Name', 'اسم الهدف'],
             ['goal_description', 'الهدف _description', 'Goal Description', 'وصف الهدف'],
             ['goal_measure', 'الهدف', 'Goal Measure', 'مقياس الهدف'],

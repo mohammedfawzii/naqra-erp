@@ -16,7 +16,7 @@ class IncentiveUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'incentive_types_id' => 'sometimes|required|integer|exists:incentive_types,id',
             'amount' => 'sometimes|required|numeric',
             'issue_date' => 'sometimes|required|date',

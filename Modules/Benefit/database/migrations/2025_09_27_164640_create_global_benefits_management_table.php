@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('global_benefits_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->integer('country_id');                      // الدولة
             $table->string('global_benefit_type');         // نوع الميزة العالمية
             $table->string('currency')->nullable();

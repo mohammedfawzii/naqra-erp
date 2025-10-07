@@ -15,12 +15,12 @@ return new class extends Migration {
             $table->unsignedBigInteger('employee_id');
             $table->integer('total_balance');
             $table->integer('remaining_balance');
-            $table->unsignedBigInteger('holiday_type');
+            $table->unsignedBigInteger('holiday_list_id');
             $table->string('status');
             $table->json('list')->nullable();
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->foreign('holiday_type')->references('id')->on('holiday_list')->onDelete('cascade');
+            $table->foreign('holiday_list_id')->references('id')->on('holiday_lists')->onDelete('cascade');
         });
     }
 

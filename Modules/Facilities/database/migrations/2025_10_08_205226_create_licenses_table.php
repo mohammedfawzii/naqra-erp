@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('facility_id')->nullable();
             $table->unsignedBigInteger('ministry_id');
             $table->unsignedBigInteger('branch_activity_specific_id');
+            $table->unsignedBigInteger('license_type_id');
             $table->string('license_address');
             $table->string('license_number');
             $table->string('license_type');

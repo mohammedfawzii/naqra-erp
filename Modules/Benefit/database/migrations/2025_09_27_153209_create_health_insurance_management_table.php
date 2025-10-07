@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('health_insurance_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->string('policy_number');                // رقم البوليصة
             $table->string('policy_category');              // تصنيف البوليصة
             $table->date('expiration_date')->nullable();    // تاريخ الانتهاء

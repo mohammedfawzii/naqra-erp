@@ -11,7 +11,7 @@ class DevelopmentPlanSeeder extends Seeder
     {
         $development_plans = [
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'description' => 'Sample description 1',
                 'targeted_skills' => 'Sample targeted_skills 1',
                 'start_date' => '2005-09-28',
@@ -19,7 +19,7 @@ class DevelopmentPlanSeeder extends Seeder
                 'status' => 'Sample status 1',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'description' => 'Sample description 2',
                 'targeted_skills' => 'Sample targeted_skills 2',
                 'start_date' => '2006-09-28',
@@ -27,7 +27,7 @@ class DevelopmentPlanSeeder extends Seeder
                 'status' => 'Sample status 2',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'description' => 'Sample description 3',
                 'targeted_skills' => 'Sample targeted_skills 3',
                 'start_date' => '2009-09-28',
@@ -35,7 +35,7 @@ class DevelopmentPlanSeeder extends Seeder
                 'status' => 'Sample status 3',
             ],
             [
-                'employeeinfo_id' => 2,
+                'employee_id' => 2,
                 'description' => 'Sample description 4',
                 'targeted_skills' => 'Sample targeted_skills 4',
                 'start_date' => '2018-09-28',
@@ -43,7 +43,7 @@ class DevelopmentPlanSeeder extends Seeder
                 'status' => 'Sample status 4',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'description' => 'Sample description 5',
                 'targeted_skills' => 'Sample targeted_skills 5',
                 'start_date' => '2005-09-28',

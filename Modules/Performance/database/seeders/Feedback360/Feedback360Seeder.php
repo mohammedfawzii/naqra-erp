@@ -11,7 +11,7 @@ class Feedback360Seeder extends Seeder
     {
         $feedback360s = [
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'evaluator_name' => 'Sample evaluator_name 1',
                 'evaluator_designation' => 'Sample evaluator_designation 1',
                 'rating' => 23.74,
@@ -19,7 +19,7 @@ class Feedback360Seeder extends Seeder
                 'source' => 'Sample source 1',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'evaluator_name' => 'Sample evaluator_name 2',
                 'evaluator_designation' => 'Sample evaluator_designation 2',
                 'rating' => 71.80,
@@ -27,7 +27,7 @@ class Feedback360Seeder extends Seeder
                 'source' => 'Sample source 2',
             ],
             [
-                'employeeinfo_id' => 1,
+                'employee_id' => 1,
                 'evaluator_name' => 'Sample evaluator_name 3',
                 'evaluator_designation' => 'Sample evaluator_designation 3',
                 'rating' => 40.60,
@@ -35,7 +35,7 @@ class Feedback360Seeder extends Seeder
                 'source' => 'Sample source 3',
             ],
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'evaluator_name' => 'Sample evaluator_name 4',
                 'evaluator_designation' => 'Sample evaluator_designation 4',
                 'rating' => 92.65,
@@ -43,7 +43,7 @@ class Feedback360Seeder extends Seeder
                 'source' => 'Sample source 4',
             ],
             [
-                'employeeinfo_id' => 3,
+                'employee_id' => 3,
                 'evaluator_name' => 'Sample evaluator_name 5',
                 'evaluator_designation' => 'Sample evaluator_designation 5',
                 'rating' => 74.54,

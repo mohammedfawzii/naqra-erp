@@ -16,7 +16,7 @@ class BaseUpdateRequest extends FormRequest
     protected function baseRules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
          'files'   => 'nullable|array',
           'files.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xlsx,xls|max:5120',
 

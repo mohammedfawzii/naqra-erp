@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('course_trackings', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id'); // employee_info id
+            $table->integer('employee_id'); // employee_info id
             $table->integer('course_id'); // course id
             $table->enum('status', ['not_started', 'in_progress', 'completed'])->default('not_started');
             $table->date('completion_date')->nullable();

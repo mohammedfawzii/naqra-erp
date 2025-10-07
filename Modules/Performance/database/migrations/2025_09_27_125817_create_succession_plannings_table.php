@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('succession_plannings', function (Blueprint $table) {
             $table->id();
-             $table->integer('employeeinfo_id'); // Employee in Employee
+             $table->integer('employee_id'); // Employee in Employee
             $table->integer('position_id');    // Position in CmsErp
             $table->string('readiness_rating')->nullable();
             $table->text('development_plan')->nullable();

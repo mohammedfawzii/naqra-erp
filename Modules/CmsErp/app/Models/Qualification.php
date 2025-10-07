@@ -4,7 +4,7 @@ namespace Modules\CmsErp\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Modules\Employee\Models\Employeeinfo;
+use Modules\Employee\Models\employee;
 use Spatie\Translatable\HasTranslations;
 
 // use Modules\CmsErp\Database\Factories\QualificationFactory;

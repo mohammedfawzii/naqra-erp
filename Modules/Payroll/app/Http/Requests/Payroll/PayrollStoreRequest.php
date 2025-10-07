@@ -16,7 +16,7 @@ class PayrollStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'basic_salary' => 'required|numeric',
             'allowances' => 'required|numeric',
             'overtime_hours' => 'required|integer',

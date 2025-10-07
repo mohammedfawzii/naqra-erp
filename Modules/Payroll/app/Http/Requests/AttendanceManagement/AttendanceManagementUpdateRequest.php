@@ -16,7 +16,7 @@ class AttendanceManagementUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'sometimes|required|integer|exists:employeeinfos,id',
+            'employee_id' => 'sometimes|required|integer|exists:employees,id',
             'attendance_date' => 'sometimes|required|date',
        'time_in' => 'sometimes||integer|exists:attendances,id',
             'time_out' => 'sometimes||integer|exists:attendances,id',

@@ -16,7 +16,7 @@ class PaidLeaveManagementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required|integer|exists:employeeinfos,id',
+            'employee_id' => 'required|integer|exists:employees,id',
             'holidays_lists_id' => 'required|string|max:255|exists:holidays_lists,id',
             'leave_balance' => 'required|numeric',
             'leave_date' => 'required|date',

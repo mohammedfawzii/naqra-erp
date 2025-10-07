@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('continuous_performance_management', function (Blueprint $table) {
             $table->id();
-            $table->integer('employeeinfo_id');
+            $table->integer('employee_id');
             $table->integer('activity_id'); //  Activity in CmsErp        
             $table->date('activity_date')->nullable();
             $table->string('ongoing_rating')->nullable();
