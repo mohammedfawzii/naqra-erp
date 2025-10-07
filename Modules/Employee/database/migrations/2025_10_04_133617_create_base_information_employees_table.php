@@ -17,9 +17,7 @@ return new class extends Migration {
             $table->date('hire_date')->nullable();
             $table->string('job_title')->nullable();
 
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->unsignedBigInteger('branch_id')->nullable();
-            $table->unsignedBigInteger('position_id')->nullable();
+             $table->string('position')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
 
             $table->date('start_hire')->nullable();

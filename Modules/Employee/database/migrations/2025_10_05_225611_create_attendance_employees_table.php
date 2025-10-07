@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('attendance_employees', function (Blueprint $table) {
             $table->id();
-
             $table->integer('basic_hours');
             $table->integer('attendance_device_id');
             $table->string('shift_change');

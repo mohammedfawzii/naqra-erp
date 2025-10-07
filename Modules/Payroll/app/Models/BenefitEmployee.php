@@ -5,7 +5,7 @@ namespace Modules\Payroll\Models;
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Payroll\Models\BenefitType;
-use Modules\Employee\Models\employee;
+use Modules\Employee\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Payroll\Database\Factories\BenefitEmployeeFactory;
 

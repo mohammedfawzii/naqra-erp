@@ -9,7 +9,7 @@ class ApiRouteService
 {
     public static function make(string $module, string $model, string $prefix = null)
     {
-        $apiFile = module_path($module, "Routes/api.php");
+        $apiFile = module_path($module, "routes/api.php");
 
         if (!File::exists($apiFile)) {
             $content = "<?php\n\nuse Illuminate\Support\Facades\Route;\n\n";

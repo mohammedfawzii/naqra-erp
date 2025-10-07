@@ -43,10 +43,13 @@ use {$updateRequestClass};
 use {$namespaceResource};
 use {$namespaceEnums};
 use App\Services\AttachmentService\AttachmentService;
+use Modules\Employee\Services\EmployeeCompletionService;
+
 
 class {$model}Controller extends Controller
 {
     use ApiResponseTrait;
+    public \$pageName= 'home1';
 
     protected \${$model}Repository;
 
@@ -74,13 +77,15 @@ class {$model}Controller extends Controller
         return \$this->successResponse(new {$model}Resource(\$data), '{$model} retrieved successfully');
     }
 
-    public function store({$model}StoreRequest \$request, AttachmentService \$service)
+    public function store({$model}StoreRequest \$request, AttachmentService \$service,EmployeeCompletionService \$percentageService)
     {
-        \$data = \$request->validated();
+        \$validated = \$request->validated();
         \$files = \$request->file('files') ?? [];
-        unset(\$data['files']);
+        unset(\$validated['files']);
 
-        \$record = \$this->{$model}Repository->create(\$data);
+        \$record = \$this->{$model}Repository->create(\$validated);
+        \$completion = \$percentageService->syncCompletion(\$validated,\$request,\$this->pageName);
+
 
         if (!empty(\$files)) {
             \$service->uploadFiles(\$files, \$record, strtolower('{$module}'));
@@ -89,17 +94,19 @@ class {$model}Controller extends Controller
         return \$this->successResponse(new {$model}Resource(\$record), '{$model} created successfully', 201);
     }
 
-    public function update({$model}UpdateRequest \$request, \$id, AttachmentService \$service)
+    public function update({$model}UpdateRequest \$request, \$id, AttachmentService \$service,EmployeeCompletionService \$percentageService)
     {
-        \$data = \$request->validated();
+        \$validated = \$request->validated();
         \$files = \$request->file('files') ?? [];
-        unset(\$data['files']);
+        unset(\$validated['files']);
 
-        \$record = \$this->{$model}Repository->update(\$id, \$data);
+        \$record = \$this->{$model}Repository->update(\$id, \$validated);
 
         if (!empty(\$files)) {
             \$service->uploadFiles(\$files, \$record, strtolower('{$module}'));
         }
+    \$completion = \$percentageService->syncCompletion(\$validated,\$request,\$this->pageName);
+
 
         return \$this->successResponse(new {$model}Resource(\$record), '{$model} updated successfully');
     }

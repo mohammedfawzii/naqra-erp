@@ -3,14 +3,14 @@
 namespace Modules\AttendanceTracking\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Employee\Models\employee;
+use Modules\Employee\Models\Employee;
 
 class BaseModel extends Model
 {
 
        public function employee()
     {
-        return $this->belongsTo(employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
         public function attendanceAttachments()
     {

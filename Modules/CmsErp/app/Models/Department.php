@@ -21,7 +21,7 @@ class Department extends Model
 
     public function Vacancies()
     {
-        return $this->hasMany(JobVacancie::class, 'department');
+        // return $this->hasMany(JobVacancie::class, 'department');
     }
 
 }

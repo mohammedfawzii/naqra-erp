@@ -2,21 +2,29 @@
 
 namespace Modules\Employee\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+ use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\CmsErp\Models\Nationality;
+ use Spatie\Translatable\HasTranslations;
+
 // use Modules\Employee\Database\Factories\PersonalInformationEmployeeFactory;
 
-class PersonalInformationEmployee extends Model
+class PersonalInformationEmployee extends BaseModel
 {
-    use HasFactory;
+    use HasFactory,HasTranslations;
 
-    /**
-     * The attributes that are mass assignable.
-     */
+ 
     protected $fillable = [];
+    public $translatable = ['first_name', 'second_name','therd_name','family_name'];
+ 
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class, 'nationality_id');
+    }
 
-    // protected static function newFactory(): PersonalInformationEmployeeFactory
+
+    // public function religion()
     // {
-    //     // return PersonalInformationEmployeeFactory::new();
+    //     return $this->belongsTo(Religion::class, 'religion_id');
     // }
+
 }

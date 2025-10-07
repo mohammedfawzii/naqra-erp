@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('holiday_list_id')->references('id')->on('holiday_lists')->onDelete('cascade');
+
         });
     }
 

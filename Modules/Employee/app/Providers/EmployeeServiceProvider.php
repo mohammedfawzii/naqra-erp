@@ -2,8 +2,19 @@
 
 namespace Modules\Employee\Providers;
 
+use Modules\Employee\Repositories\EmployeeDebendent\EmployeeDebendentRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeDebendent\EmployeeDebendentRepository;
+
+use Modules\Employee\Repositories\PersonalInformationEmployee\PersonalInformationEmployeeRepositoryInterface;
+use Modules\Employee\Repositories\PersonalInformationEmployee\PersonalInformationEmployeeRepository;
+
+use Modules\Employee\Repositories\BaseInformationEmployee\BaseInformationEmployeeRepositoryInterface;
+use Modules\Employee\Repositories\BaseInformationEmployee\BaseInformationEmployeeRepository;
+
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Employee\Repositories\EmployeePageCompletion\EmployeePageCompletionRepository;
+use Modules\Employee\Repositories\EmployeePageCompletion\EmployeePageCompletionRepositoryInterface;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -32,11 +43,14 @@ class EmployeeServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register(): void
-    {
-        $this->app->register(EventServiceProvider::class);
+    public function register(): void {
+$this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-    }
+        $this->app->bind(EmployeePageCompletionRepositoryInterface::class,EmployeePageCompletionRepository::class);
+        $this->app->bind(BaseInformationEmployeeRepositoryInterface::class, BaseInformationEmployeeRepository::class);
+        $this->app->bind(PersonalInformationEmployeeRepositoryInterface::class, PersonalInformationEmployeeRepository::class);
+        $this->app->bind(EmployeeDebendentRepositoryInterface::class, EmployeeDebendentRepository::class);
+}
 
     /**
      * Register commands in the format of Command::class

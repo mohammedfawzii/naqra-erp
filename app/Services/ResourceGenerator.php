@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
@@ -24,16 +25,19 @@ class ResourceGenerator
         }
 
         $resourcePath = "{$modelFolder}/{$model}Resource.php";
+        $enumsPath    = "{$modelFolder}/{$model}ResourceEnums.php";
 
+        // إنشاء Resource إذا مش موجود
         if (!File::exists($resourcePath)) {
             $columns = Schema::getColumnListing($table);
-            $resourceStub = self::generateStub($module, $model, $columns);
+            $resourceStub = self::generateResourceStub($module, $model, $columns);
             File::put($resourcePath, $resourceStub);
         }
 
+        // تعديل المودل للعلاقات والjson
         self::updateModelRelations($module, $model, $table);
 
-            $enumsPath = "{$modelFolder}/{$model}ResourceEnums.php";
+        // إنشاء ResourceEnums إذا مش موجود
         if (!File::exists($enumsPath)) {
             $enumsStub = self::generateEnumsStub($module, $model, $table);
             File::put($enumsPath, $enumsStub);
@@ -42,202 +46,186 @@ class ResourceGenerator
         return "{$model}Resource + Relations updated successfully inside Module {$module}.";
     }
 
- private static function generateStub($module, $model, $columns)
-{
-    $fieldsString = "";
-    $table = Str::snake(Str::pluralStudly($model));
-
-     $skipCols = ['id', 'created_at', 'updated_at', 'deleted_at', 'employee','employee_id','Attachments','attendanceAttachments','attendanceAttachments_id','employee','employee_id'];
-
-    foreach ($columns as $col) {
-         if (in_array($col, $skipCols)) {
-            continue;
-        }
-
-        $type = Schema::getColumnType($table, $col);
-
-        if (Str::endsWith($col, '_id')) {
-            $relation = Str::camel(Str::replaceLast('_id', '', $col));
-            $relatedTable = Str::snake(Str::pluralStudly(Str::replaceLast('_id', '', $col)));
-
-            if (Schema::hasTable($relatedTable)) {
-                $relatedCols = Schema::getColumnListing($relatedTable);
-                $firstCol = collect($relatedCols)
-                    ->reject(fn($c) => in_array($c, ['id', 'created_at', 'updated_at', 'deleted_at', 'employee_id', 'employee','Attachments','attendanceAttachments','attendanceAttachments_id','employee','employee_id']))
-                    ->first();
-                $priorityCols = ['name', 'title', 'full_name', 'company_name'];
-                $preferredCol = collect($priorityCols)->first(fn($pc) => in_array($pc, $relatedCols));
-                $colToUse = $preferredCol ?? $firstCol ?? null;
-
-                if ($colToUse) {
-                    $relatedType = Schema::getColumnType($relatedTable, $colToUse);
-                    if ($relatedType === 'json') {
-                        $fieldsString .= "            '{$relation}' => \$resource->{$relation} ? \$resource->{$relation}->getTranslation('{$colToUse}', app()->getLocale()) : null,\n";
-                    } else {
-                        $fieldsString .= "            '{$relation}' => \$resource->{$relation}?->{$colToUse},\n";
-                    }
-                } else {
-                    $fieldsString .= "            '{$relation}' => null,\n";
-                }
-            } else {
-                $fieldsString .= "            '{$relation}' => null,\n";
-            }
-        } elseif ($type === 'json') {
-            $fieldsString .= "            '{$col}' => \$resource->getTranslation('{$col}', app()->getLocale()),\n";
-        } else {
-            $fieldsString .= "            '{$col}' => \$resource->{$col},\n";
-        }
-    }
-
-    return "<?php
-
-namespace Modules\\{$module}\\Transformers\\{$model};
-
-use App\Transformers\BaseResource\BaseResource;
-
-class {$model}Resource extends BaseResource
-{
-    public function toArray(\$request)
-    {
-        \$resource = \$this->resource;
-
-        return array_merge(
-            \$this->baseArray(),
-            [
-{$fieldsString}            ],
-            \$this->timestampsArray()
-        );
-    }
-}
-";
-}
-
-   private static function updateModelRelations($module, $model, $table)
+  private static function updateModelRelations($module, $model, $table)
 {
     $modelPath = module_path($module, "app/Models/{$model}.php");
-
-    if (!File::exists($modelPath)) {
-        return;
-    }
+    if (!File::exists($modelPath)) return;
 
     $content = File::get($modelPath);
+    $columns = Schema::getColumnListing($table);
+// لو فيه JSON اعمل translatable بالأعمدة نفسها
+if (!empty($jsonColumns)) {
+    $translatableArray = "protected \$translatable = ['" . implode("','", $jsonColumns) . "'];";
 
-    // ✅ استبدال Model بـ BaseModel لو لسه مش متعدل
-    if (Str::contains($content, 'extends Model')) {
-        $content = str_replace('extends Model', 'extends BaseModel', $content);
+    // جملة للتأكد إنها شغالة، زي method أو property
+    $extraLine = "public function testJsonColumns() { return 'JSON columns are working!'; }";
 
-        // إضافة use BaseModel; لو مش موجود
-        if (!Str::contains($content, 'use App\\Models\\BaseModel;')) {
-            $content = preg_replace(
-                '/namespace .*?;\s*/',
-                "$0\nuse App\\Models\\BaseModel;\n",
-                $content
-            );
+    if (preg_match('/protected \$translatable\s*=\s*\[.*?\];/s', $content)) {
+        // لو موجود بالفعل، حدثه بالأعمدة الجديدة
+        $content = preg_replace(
+            '/protected \$translatable\s*=\s*\[.*?\];/s',
+            $translatableArray,
+            $content
+        );
+        // ضيف الجملة بعد protected $translatable مباشرة
+        $content = preg_replace(
+            '/protected \$translatable\s*=\s*\[.*?\];/',
+            "$0\n    $extraLine",
+            $content
+        );
+    } else {
+        // لو مش موجود، ضيفه بعد فتح الكلاس مباشرة
+        if (preg_match('/class ' . $model . '.*?{/', $content, $matches, PREG_OFFSET_CAPTURE)) {
+            $pos = $matches[0][1] + strlen($matches[0][0]);
+            $content = substr_replace($content, "\n    {$translatableArray}\n    {$extraLine}\n", $pos, 0);
         }
     }
+}
 
-    $columns = Schema::getColumnListing($table);
 
-    $skipFunctions = ['attendanceAttachments', 'employee', 'employee','attachments','payrollAttachments'];
 
+    // ===== إضافة علاقات belongsTo لكل عمود _id =====
+    $skipFunctions = ['attendanceAttachments', 'employee', 'employeeinfo', 'attachments', 'payrollAttachments'];
     foreach ($columns as $col) {
         if (Str::endsWith($col, '_id')) {
             $relation = Str::camel(Str::replaceLast('_id', '', $col));
-
-            if (in_array($relation, $skipFunctions)) {
-                continue;
-            }
-
+            if (in_array($relation, $skipFunctions) || Str::contains($content, "function {$relation}(")) continue;
             $relatedModel = Str::studly(Str::replaceLast('_id', '', $col));
-
-            if (Str::contains($content, "function {$relation}(")) {
-                continue;
-            }
-
-            $relationCode = "
-
-    public function {$relation}()
-    {
-        return \$this->belongsTo({$relatedModel}::class, '{$col}');
-    }
-";
-
+            $relationCode = "\n    public function {$relation}()\n    {\n        return \$this->belongsTo({$relatedModel}::class, '{$col}');\n    }\n";
             $content = preg_replace('/}\s*$/', $relationCode . "\n}", $content);
         }
     }
 
     File::put($modelPath, $content);
 }
-private static function generateEnumsStub($module, $model, $table)
+
+
+
+
+    private static function generateResourceStub($module, $model, $columns)
+    {
+        $className = "{$model}Resource";
+        $resourceArray = [];
+        foreach ($columns as $col) {
+            $resourceArray[] = "            '{$col}' => \$this->{$col},";
+        }
+
+        $resourceContent = implode("\n", $resourceArray);
+
+        return "<?php
+
+namespace Modules\\{$module}\\Transformers\\{$model};
+
+use Illuminate\\Http\\Resources\\Json\\JsonResource;
+
+/**
+ * 🔹 {$className}
+ */
+class {$className} extends JsonResource
 {
-    $className = "{$model}ResourceEnums";
-    $columns   = Schema::getColumnListing($table);
+    public function toArray(\$request): array
+    {
+        return [
+{$resourceContent}
+        ];
+    }
+}
+";
+    }
 
-    $fieldsString = "";
-    $useModels    = []; // 🟢 هنا هخزن أسماء الموديلات
+    private static function generateEnumsStub($module, $model, $table)
+    {
+        $className = "{$model}ResourceEnums";
+        $columns   = Schema::getColumnListing($table);
 
-    foreach ($columns as $col) {
-        $type = Schema::getColumnType($table, $col);
+        $relationsArray = [];
+        $enumsFunctions = [];
+        $useModels      = [];
 
-        // ✅ ENUM columns → label/value (PHP array format)
-        if ($type === 'enum') {
-            $enumValues = Schema::getConnection()
-                ->select("SHOW COLUMNS FROM {$table} WHERE Field = '{$col}'")[0]->Type ?? '';
+        foreach ($columns as $col) {
+            $type = Schema::getColumnType($table, $col);
 
-            preg_match("/enum\((.*)\)/", $enumValues, $matches);
+            if ($type === 'enum') {
+                $enumValues = Schema::getConnection()
+                    ->select("SHOW COLUMNS FROM {$table} WHERE Field = '{$col}'")[0]->Type ?? '';
 
-            if (!empty($matches[1])) {
-                $values = str_getcsv(str_replace("'", "", $matches[1]));
+                preg_match("/enum\((.*)\)/", $enumValues, $matches);
 
-                $formatted = array_map(function ($val) {
-                    return "[ 'label' => '" . ucfirst(str_replace('_', ' ', $val)) . "', 'value' => '{$val}' ]";
-                }, $values);
+                if (!empty($matches[1])) {
+                    $values = str_getcsv(str_replace("'", "", $matches[1]));
+                    $fnName = Str::camel(Str::pluralStudly($col));
+                    $body = "        return [\n";
+                    foreach ($values as $val) {
+                        $label = ucfirst(str_replace('_', ' ', $val));
+                        $body .= "            ['label' => '{$label}', 'value' => '{$val}'],\n";
+                    }
+                    $body .= "        ];";
 
-                $fieldsString .= "                '{$col}' => [\n                    " . implode(",\n                    ", $formatted) . "\n                ],\n";
+                    $enumsFunctions[] = "
+    protected function {$fnName}(): array
+    {
+{$body}
+    }";
+
+                    $relationsArray[] = "            '{$col}' => \$this->{$fnName}(),";
+                }
+            }
+
+            if (Str::endsWith($col, '_id') && $col !== 'employeeinfo_id') {
+                $relation     = Str::camel(Str::replaceLast('_id', '', $col));
+                $modelName    = Str::studly(Str::replaceLast('_id', '', $col));
+                $relatedTable = Str::snake(Str::pluralStudly($modelName));
+                if (!Schema::hasTable($relatedTable)) continue;
+
+                $relatedCols = Schema::getColumnListing($relatedTable);
+                $firstCol = collect($relatedCols)
+                    ->reject(fn($c) => in_array($c, ['id','created_at','updated_at','deleted_at']))
+                    ->first();
+                $labelKey = $firstCol ?? 'id';
+                $useModels[] = $modelName;
+                $relationsArray[] = "            '{$relation}' => \$this->enum({$modelName}::class, '{$labelKey}'),";
             }
         }
 
-        // ✅ Relations من *_id (مع تخطي employee_id)
-        if (Str::endsWith($col, '_id') && $col !== 'employee_id') {
-            $relation     = Str::camel(Str::replaceLast('_id', '', $col)); // ex: position
-            $modelName    = Str::studly(Str::replaceLast('_id', '', $col)); // ex: Position
-            $relatedTable = Str::snake(Str::pluralStudly($modelName));      // ex: positions
-
-            // جيب أول عمود بعد الـ id
-            $relatedCols = Schema::getColumnListing($relatedTable);
-            $firstCol = collect($relatedCols)
-                ->reject(fn($c) => in_array($c, ['id', 'created_at', 'updated_at', 'deleted_at']))
-                ->first();
-
-            $labelKey = $firstCol ?? 'id';
-
-            // 🟢 ضيف الموديل لقائمة use
-            $useModels[] = "use Modules\\CmsErp\\Models\\{$modelName};";
-
-            $fieldsString .= "                '{$relation}' => BaseEnums::collectionFrom({$modelName}::all(), '{$labelKey}'),\n";
+        $useString = '';
+        if (!empty($useModels)) {
+            $unique = array_unique($useModels);
+            $useString = "use Modules\\{$module}\\Models\\{\n    " . implode(",\n    ", $unique) . "\n};";
         }
-    }
 
-    // 🟢 شيل التكرارات
-    $useModels = array_unique($useModels);
+        $relationsContent = implode("\n", $relationsArray);
 
-    return "<?php
+        $enumFunction = "
+    protected function enum(string \$modelClass, string \$labelField): array
+    {
+        \$records = \$modelClass::query()->select('id', \$labelField)->get();
+        return BaseEnums::collectionFrom(\$records, \$labelField)->toArray();
+    }";
+
+        return "<?php
 
 namespace Modules\\{$module}\\Transformers\\{$model};
 
 use Illuminate\\Http\\Resources\\Json\\JsonResource;
 use App\\Transformers\\BaseEnums\\BaseEnums;
-" . implode("\n", $useModels) . "
+{$useString}
 
+/**
+ * 🔹 {$className}
+ */
 class {$className} extends JsonResource
 {
-    public function toArray(\$request)
+    public function toArray(\$request): array
     {
-       return [
-{$fieldsString}
+        return [
+{$relationsContent}
         ];
     }
+
+{$enumFunction}
+
+" . implode("\n", $enumsFunctions) . "
 }
 ";
-}
+    }
 }
