@@ -71,7 +71,7 @@ class PersonalInformationEmployeeSeeder extends Seeder
                     'en' => 'Sample family_name 2',
                     'ar' => 'عينة family_name 2'
                 ],
-                'nationality_id' => 3,
+                'nationality_id' => 1,
                 'marital_status' => 'single',
                 'marriage_date' => '2020-10-07',
                 'gender' => 'male',
@@ -200,7 +200,7 @@ class PersonalInformationEmployeeSeeder extends Seeder
                     'en' => 'Sample family_name 5',
                     'ar' => 'عينة family_name 5'
                 ],
-                'nationality_id' => 3,
+                'nationality_id' => 1,
                 'marital_status' => 'single',
                 'marriage_date' => '2007-10-07',
                 'gender' => 'male',

@@ -20,12 +20,12 @@ class HolidayListSeeder extends Seeder
             ['en' => 'National Day', 'ar' => 'اليوم الوطني'],
         ];
 
-        foreach ($holidays as $holiday) {
-            DB::table('holidays_lists')->insert([
-                'holiday_type' => json_encode($holiday, JSON_UNESCAPED_UNICODE),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        // foreach ($holidays as $holiday) {
+        //     DB::table('holidays_list')->insert([
+        //         'holiday_type' => json_encode($holiday, JSON_UNESCAPED_UNICODE),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+        // }
     }
 }

@@ -19,8 +19,8 @@ class CompanyHeadquarterSeeder extends Seeder
         ];
 
         foreach ($headquarters as $hq) {
-            DB::table('company_headquarters')->insert([
-                'headquarter_name' => json_encode($hq),
+            DB::table('headquarters')->insert([
+                'headquarters' => json_encode($hq),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

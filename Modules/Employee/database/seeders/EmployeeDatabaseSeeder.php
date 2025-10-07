@@ -13,15 +13,17 @@ class EmployeeDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(EmployeeAddress\EmployeeAddressSeeder::class);
-        $this->call(EmployeeDebendent\EmployeeDebendentSeeder::class);
-        $this->call(PersonalInformationEmployee\PersonalInformationEmployeeSeeder::class);
-        
+     
           $this->call([
             EmployeeSeeder::class,
             ColumnsSeeder::class,
             InfoSeeder::class,
-            BaseInformationEmployeeSeeder::class
+            BaseInformationEmployeeSeeder::class,
+            EmployeeAddress\EmployeeAddressSeeder::class,
+            EmployeeDebendent\EmployeeDebendentSeeder::class,
+            PersonalInformationEmployee\PersonalInformationEmployeeSeeder::class
           ]);
+ 
+        
     }
 }
