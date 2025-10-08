@@ -2,8 +2,7 @@
 
 namespace Modules\Employee\Http\Requests\PersonalInformationEmployee;
 
-use App\Http\Requests\BaseRequest\UpdateBaseRequest;
-use Modules\Employee\Http\Requests\BaseRequest\UpdateBaseRequest;
+ use Modules\Employee\Http\Requests\BaseRequest\UpdateBaseRequest;
 
 
 class PersonalInformationEmployeeUpdateRequest extends UpdateBaseRequest
