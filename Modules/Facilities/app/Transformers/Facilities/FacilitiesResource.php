@@ -4,24 +4,24 @@ namespace Modules\Facilities\Transformers\Facilities;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * 🔹 FacilitiesResource
+ */
 class FacilitiesResource extends JsonResource
 {
-    public function toArray($request)
+    public function toArray($request): array
     {
-        $resource = $this->resource;
-
         return [
-            'id' => $resource->id,
-            'img' => $resource->img,
-            'unified_national_number' => $resource->unified_national_number,
-            'company_name_ar' => $resource->company_name_ar,
-            'company_name_en' => $resource->company_name_en,
-            'companyType' => $resource->companyType ? $resource->companyType->getTranslation('company_type', app()->getLocale()) : null,
-            'companySize' => $resource->companySize ? $resource->companySize->getTranslation('type', app()->getLocale()) : null,
-            'companyHeadquarters' => $resource->companyHeadquarters ? $resource->companyHeadquarters->getTranslation('headquarter_name', app()->getLocale()) : null,
-            'companyActivities' => $resource->companyActivities ? $resource->companyActivities->getTranslation('activity_name', app()->getLocale()) : null,
-            'created_at' => $resource->created_at,
-            'updated_at' => $resource->updated_at,
+            'id' => $this->id,
+            'name' => $this->name,
+            'have_branches' => $this->have_branches,
+            'employee_count' => $this->employee_count,
+            'national_number_alone' => $this->national_number_alone,
+            'status' => $this->status,
+            'activity' => $this->activity,
+            'completion_percentage' => $this->completion_percentage,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

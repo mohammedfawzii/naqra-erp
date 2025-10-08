@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CmsErpDatabaseSeeder::class,
-            // FacilitiesDatabaseSeeder::class,
+            FacilitiesDatabaseSeeder::class,
             EmployeeDatabaseSeeder::class,
             PayrollDatabaseSeeder::class,
             AttendanceTrackingDatabaseSeeder::class,

@@ -8,32 +8,19 @@ use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Facilities\Database\Factories\BranchesFactory;
 
-class branches extends Model
+class branches extends BaseModel
 {
-    use HasFactory,HasTranslations;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      */
     protected $fillable = [];
+        public $translatable = ['name'];
+
+    
 
 
-    // protected static function newFactory(): BranchesFactory
-    // {
-    //     // return BranchesFactory::new();
-    // }
-
-
-    public function branchTypes()
-    {
-        return $this->belongsTo(BranchType::class, 'branch_types_id');
-    }
-
-
-
-    public function facilityAttachments()
-    {
-        return $this->belongsTo(FacilityAttachments::class, 'facility_attachments_id','reference_number');
-    }
+   
 
 }

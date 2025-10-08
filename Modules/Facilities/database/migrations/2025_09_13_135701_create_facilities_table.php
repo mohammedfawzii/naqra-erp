@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->json('name')->nullable();
             $table->boolean('have_branches')->default(false);
             $table->integer('employee_count')->default(0);
             $table->string('national_number_alone')->nullable(); 

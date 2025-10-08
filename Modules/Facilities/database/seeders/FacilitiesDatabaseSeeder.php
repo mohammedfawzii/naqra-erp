@@ -13,15 +13,8 @@ class FacilitiesDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(MedicalInsurancesFacilities\MedicalInsurancesFacilitiesSeeder::class);
-        $this->call(periodicObligations\periodicObligationsSeeder::class);
-        $this->call(SubscriptionFacilities\SubscriptionFacilitiesSeeder::class);
-        $this->call(License\LicenseSeeder::class);
-        $this->call(Branches\BranchesSeeder::class);
-        $this->call(DigitalFacility\DigitalFacilitySeeder::class);
-          $this->call(Owner\OwnerSeeder::class);
         $this->call(Facilities\FacilitiesSeeder::class);
-        $this->call(User\UserSeeder::class);
+
         $this->call([
             ColumnsSeeder::class,
             InfoSeeder::class,

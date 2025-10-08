@@ -24,8 +24,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('headquarter_id')->nullable();
             $table->unsignedBigInteger('activity_id')->nullable();
 
-            // معلومات الاتصال
-            $table->string('phone_number')->nullable();
+             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
 
