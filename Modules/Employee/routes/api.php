@@ -24,22 +24,22 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
     Route::apiResource('employees', EmployeeController::class)->names('employee');
 });
 
-Route::prefix('v1')->group(function () {
-     Route::apiResource('base_information_employees', BaseInformationEmployeeController::class)->names('base_information_employee');
-    Route::apiResource('personal_information_employees', PersonalInformationEmployeeController::class)->names('personal_information_employee');
-    Route::apiResource('employee_debendents', EmployeeDebendentController::class)->names('employee_debendent');
-    Route::apiResource('employee_addresses', EmployeeAddressController::class)->names('employee_address');
-    Route::apiResource('employee_experiences', EmployeeExperienceController::class)->names('employee_experience');
-    Route::apiResource('employee_languages', EmployeeLanguageController::class)->names('employee_language');
-    Route::apiResource('employee_skills', EmployeeSkillController::class)->names('employee_skill');
-    Route::apiResource('employee_courses', EmployeeCourseController::class)->names('employee_course');
-    Route::apiResource('employee_qualifications', EmployeeQualificationController::class)->names('employee_qualification');
-    Route::apiResource('employee_contacts', EmployeeContactController::class)->names('employee_contact');
-    Route::apiResource('employeeMedicalInsuranceCategori', EmployeeMedicalRecordController::class)->names('employee_medical_record');
-    Route::apiResource('employee_financial_entitlements', EmployeeFinancialEntitlementController::class)->names('employee_financial_entitlement');
-    Route::apiResource('employee_allowances', EmployeeAllowanceController::class)->names('employee_allowance');
-    Route::apiResource('employee_other_entitlements', EmployeeOtherEntitlementController::class)->names('employee_other_entitlement');
-    Route::apiResource('attendance_employees', AttendanceEmployeeController::class)->names('attendance_employee');
-    Route::apiResource('employee_holidays', EmployeeHolidayController::class)->names('employee_holiday');
-    Route::apiResource('employee_accounts', EmployeeAccountController::class)->names('employee_account');
+Route::prefix('v1/employee')->group(function () {
+     Route::apiResource('base-information', BaseInformationEmployeeController::class)->names('base_information_employee');
+    Route::apiResource('personal-information', PersonalInformationEmployeeController::class)->names('personal_information_employee');
+    Route::apiResource('dependents', EmployeeDebendentController::class)->names('employee_debendent');
+    Route::apiResource('addresses', EmployeeAddressController::class)->names('employee_address');
+    Route::apiResource('experiences', EmployeeExperienceController::class)->names('employee_experience');
+    Route::apiResource('languages', EmployeeLanguageController::class)->names('employee_language');
+    Route::apiResource('skills', EmployeeSkillController::class)->names('employee_skill');
+    Route::apiResource('courses', EmployeeCourseController::class)->names('employee_course');
+    Route::apiResource('qualifications', EmployeeQualificationController::class)->names('employee_qualification');
+    Route::apiResource('contacts', EmployeeContactController::class)->names('employee_contact');
+    Route::apiResource('medical-insurance-categories', EmployeeMedicalRecordController::class)->names('employee_medical_record');
+    Route::apiResource('financial-entitlements', EmployeeFinancialEntitlementController::class)->names('employee_financial_entitlement');
+    Route::apiResource('allowances', EmployeeAllowanceController::class)->names('employee_allowance');
+    Route::apiResource('other-entitlements', EmployeeOtherEntitlementController::class)->names('employee_other_entitlement');
+    Route::apiResource('attendance', AttendanceEmployeeController::class)->names('attendance_employee');
+    Route::apiResource('holidays', EmployeeHolidayController::class)->names('employee_holiday');
+    Route::apiResource('accounts', EmployeeAccountController::class)->names('employee_account');
 });
