@@ -19,4 +19,10 @@ class AttendanceEmployee extends Model
     // {
     //     // return AttendanceFactory::new();
     // }
+
+    public function attendanceDevice()
+    {
+        return $this->belongsTo(AttendanceDevice::class, 'attendance_device_id');
+    }
+
 }

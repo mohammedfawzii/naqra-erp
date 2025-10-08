@@ -1,0 +1,99 @@
+<?php
+
+namespace Modules\Employee\Http\Controllers\EmployeeLanguage;
+
+use Modules\Employee\Repositories\EmployeeLanguage\EmployeeLanguageRepositoryInterface;
+use App\Traits\ApiResponseTrait;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Modules\Employee\Transformers\BaseCollection\BaseCollection;
+use Modules\Employee\Http\Requests\EmployeeLanguage\EmployeeLanguageStoreRequest;
+use Modules\Employee\Http\Requests\EmployeeLanguage\EmployeeLanguageUpdateRequest;
+use Modules\Employee\Transformers\EmployeeLanguage\EmployeeLanguageResource;
+use Modules\Employee\Transformers\EmployeeLanguage\EmployeeLanguageResourceEnums;
+use App\Services\AttachmentService\AttachmentService;
+use Modules\Employee\Services\EmployeeCompletionService;
+
+
+class EmployeeLanguageController extends Controller
+{
+    use ApiResponseTrait;
+    public $pageName= 'home5';
+
+    protected $EmployeeLanguageRepository;
+
+    public function __construct(EmployeeLanguageRepositoryInterface $EmployeeLanguageRepository)
+    {
+        $this->EmployeeLanguageRepository = $EmployeeLanguageRepository;
+    }
+
+    public function index(Request $request)
+    {
+     return $request->boolean('list')
+      ? $this->successResponse(new EmployeeLanguageResourceEnums([]),'EmployeeLanguage enums retrieved successfully')
+      : $this->successResponse(
+         new BaseCollection($this->EmployeeLanguageRepository->all(), 'employeelanguage', EmployeeLanguageResource::class),
+         'EmployeeLanguage list retrieved successfully'
+            );
+    }
+
+    public function show($id)
+    {
+        $data = $this->EmployeeLanguageRepository->find($id);
+        if (!$data) {
+            return $this->errorResponse('EmployeeLanguage not found', 404);
+        }
+        return $this->successResponse(new EmployeeLanguageResource($data), 'EmployeeLanguage retrieved successfully');
+    }
+
+    public function store(EmployeeLanguageStoreRequest $request, AttachmentService $service,EmployeeCompletionService $percentageService)
+    {
+        $validated = $request->validated();
+        $files = $request->file('files') ?? [];
+        unset($validated['files']);
+
+        $record = $this->EmployeeLanguageRepository->create($validated);
+        $completion = $percentageService->syncCompletion($validated,$request,$this->pageName);
+
+
+        if (!empty($files)) {
+            $service->uploadFiles($files, $record, strtolower('Employee'));
+        }
+
+        return $this->successResponse(new EmployeeLanguageResource($record), 'EmployeeLanguage created successfully', 201);
+    }
+
+    public function update(EmployeeLanguageUpdateRequest $request, $id, AttachmentService $service,EmployeeCompletionService $percentageService)
+    {
+        $validated = $request->validated();
+        $files = $request->file('files') ?? [];
+        unset($validated['files']);
+
+        $record = $this->EmployeeLanguageRepository->update($id, $validated);
+
+        if (!empty($files)) {
+            $service->uploadFiles($files, $record, strtolower('Employee'));
+        }
+    $completion = $percentageService->syncCompletion($validated,$request,$this->pageName);
+
+
+        return $this->successResponse(new EmployeeLanguageResource($record), 'EmployeeLanguage updated successfully');
+    }
+
+    public function destroy($id, Request $request)
+    {
+        $ids = $request->input('ids', []);
+
+        if (is_string($ids)) {
+            $ids = json_decode($ids, true);
+        }
+
+        if (!is_array($ids)) {
+            return $this->errorResponse('IDs must be an array', 400);
+        }
+
+        $deletedCount = $this->EmployeeLanguageRepository->deleteWithAttachments($ids);
+
+        return $this->successResponse(null, "{$deletedCount} EmployeeLanguage deleted successfully");
+    }
+}

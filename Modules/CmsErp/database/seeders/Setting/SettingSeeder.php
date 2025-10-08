@@ -4,6 +4,7 @@ namespace Modules\CmsErp\Database\Seeders\Setting;
 
 use Illuminate\Database\Seeder;
 use Modules\CmsErp\Models\Department;
+use Modules\CmsErp\Models\MedicalInsuranceCategorie;
 use Modules\CmsErp\Models\NoticePeriod;
 use Modules\CmsErp\Models\TrialPeriod;
 
@@ -28,6 +29,16 @@ class SettingSeeder extends Seeder
             ['period_long' => ['en' => 'Two Months', 'ar' => 'شهرين']],
             ['period_long' => ['en' => 'Three Months', 'ar' => 'ثلاثة أشهر']],
         ];
+    //     $trialPeriods = [
+    //     ['category_name' => ['en' => 'One Month', 'ar' => 'شهر واحد']],
+    //     ['category_name' => ['en' => 'Two Months', 'ar' => 'شهرين']],
+    //     ['category_name' => ['en' => 'Three Months', 'ar' => 'ثلاثة أشهر']],
+    // ];
+
+    // foreach ($trialPeriods as $period) {
+    //     MedicalInsuranceCategorie::create($period);
+    // }
+
 
         foreach ($trialPeriods as $period) {
             TrialPeriod::create($period);

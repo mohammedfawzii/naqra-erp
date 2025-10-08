@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Employee\Database\Factories\EmployeeContactFactory;
 
-class EmployeeContact extends Model
+class EmployeeContact extends BaseModel
 {
     use HasFactory;
 
@@ -14,6 +14,7 @@ class EmployeeContact extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [];
+    protected $translatable=['job_title'];
 
     // protected static function newFactory(): EmployeeContactFactory
     // {

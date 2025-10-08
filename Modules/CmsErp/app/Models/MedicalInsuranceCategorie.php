@@ -15,7 +15,7 @@ class MedicalInsuranceCategorie extends Model
      * The attributes that are mass assignable.
      */
     protected $fillable = [];
-    public $translatable = ['blood_type'];
+    public $translatable = ['blood_type',];
 
     // protected static function newFactory(): MedicalInsuranceCategorieFactory
     // {

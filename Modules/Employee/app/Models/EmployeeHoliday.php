@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Employee\Database\Factories\EmployeeHolidayFactory;
 
-class EmployeeHoliday extends Model
+class EmployeeHoliday extends BaseModel
 {
     use HasFactory;
+
+             public $translatable = ['list'];
 
     /**
      * The attributes that are mass assignable.
@@ -19,4 +21,10 @@ class EmployeeHoliday extends Model
     // {
     //     // return EmployeeHolidayFactory::new();
     // }
+
+    public function holidayList()
+    {
+        return $this->belongsTo(HolidayList::class, 'holiday_list_id');
+    }
+
 }

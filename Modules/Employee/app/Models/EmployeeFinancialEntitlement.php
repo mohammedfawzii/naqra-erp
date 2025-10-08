@@ -19,4 +19,22 @@ class EmployeeFinancialEntitlement extends Model
     // {
     //     // return EmployeeFinancialEntitlementFactory::new();
     // }
+
+    public function salaryType()
+    {
+        return $this->belongsTo(SalaryType::class, 'salary_type_id');
+    }
+
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class, 'currency_id');
+    }
+
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class, 'bank_id');
+    }
+
 }

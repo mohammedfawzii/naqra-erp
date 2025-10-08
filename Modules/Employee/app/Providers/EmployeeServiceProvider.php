@@ -2,6 +2,45 @@
 
 namespace Modules\Employee\Providers;
 
+use Modules\Employee\Repositories\EmployeeAccount\EmployeeAccountRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeAccount\EmployeeAccountRepository;
+
+use Modules\Employee\Repositories\EmployeeHoliday\EmployeeHolidayRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeHoliday\EmployeeHolidayRepository;
+
+use Modules\Employee\Repositories\AttendanceEmployee\AttendanceEmployeeRepositoryInterface;
+use Modules\Employee\Repositories\AttendanceEmployee\AttendanceEmployeeRepository;
+
+use Modules\Employee\Repositories\EmployeeOtherEntitlement\EmployeeOtherEntitlementRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeOtherEntitlement\EmployeeOtherEntitlementRepository;
+
+use Modules\Employee\Repositories\EmployeeAllowance\EmployeeAllowanceRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeAllowance\EmployeeAllowanceRepository;
+
+use Modules\Employee\Repositories\EmployeeFinancialEntitlement\EmployeeFinancialEntitlementRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeFinancialEntitlement\EmployeeFinancialEntitlementRepository;
+
+use Modules\Employee\Repositories\EmployeeMedicalRecord\EmployeeMedicalRecordRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeMedicalRecord\EmployeeMedicalRecordRepository;
+
+use Modules\Employee\Repositories\EmployeeContact\EmployeeContactRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeContact\EmployeeContactRepository;
+
+use Modules\Employee\Repositories\EmployeeQualification\EmployeeQualificationRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeQualification\EmployeeQualificationRepository;
+
+use Modules\Employee\Repositories\EmployeeCourse\EmployeeCourseRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeCourse\EmployeeCourseRepository;
+
+use Modules\Employee\Repositories\EmployeeSkill\EmployeeSkillRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeSkill\EmployeeSkillRepository;
+
+use Modules\Employee\Repositories\EmployeeLanguage\EmployeeLanguageRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeLanguage\EmployeeLanguageRepository;
+
+use Modules\Employee\Repositories\EmployeeExperience\EmployeeExperienceRepositoryInterface;
+use Modules\Employee\Repositories\EmployeeExperience\EmployeeExperienceRepository;
+
 use Modules\Employee\Repositories\EmployeeAddress\EmployeeAddressRepositoryInterface;
 use Modules\Employee\Repositories\EmployeeAddress\EmployeeAddressRepository;
 
@@ -54,6 +93,19 @@ $this->app->register(EventServiceProvider::class);
         $this->app->bind(PersonalInformationEmployeeRepositoryInterface::class, PersonalInformationEmployeeRepository::class);
         $this->app->bind(EmployeeDebendentRepositoryInterface::class, EmployeeDebendentRepository::class);
         $this->app->bind(EmployeeAddressRepositoryInterface::class, EmployeeAddressRepository::class);
+        $this->app->bind(EmployeeExperienceRepositoryInterface::class, EmployeeExperienceRepository::class);
+        $this->app->bind(EmployeeLanguageRepositoryInterface::class, EmployeeLanguageRepository::class);
+        $this->app->bind(EmployeeSkillRepositoryInterface::class, EmployeeSkillRepository::class);
+        $this->app->bind(EmployeeCourseRepositoryInterface::class, EmployeeCourseRepository::class);
+        $this->app->bind(EmployeeQualificationRepositoryInterface::class, EmployeeQualificationRepository::class);
+        $this->app->bind(EmployeeContactRepositoryInterface::class, EmployeeContactRepository::class);
+        $this->app->bind(EmployeeMedicalRecordRepositoryInterface::class, EmployeeMedicalRecordRepository::class);
+        $this->app->bind(EmployeeFinancialEntitlementRepositoryInterface::class, EmployeeFinancialEntitlementRepository::class);
+        $this->app->bind(EmployeeAllowanceRepositoryInterface::class, EmployeeAllowanceRepository::class);
+        $this->app->bind(EmployeeOtherEntitlementRepositoryInterface::class, EmployeeOtherEntitlementRepository::class);
+        $this->app->bind(AttendanceEmployeeRepositoryInterface::class, AttendanceEmployeeRepository::class);
+        $this->app->bind(EmployeeHolidayRepositoryInterface::class, EmployeeHolidayRepository::class);
+        $this->app->bind(EmployeeAccountRepositoryInterface::class, EmployeeAccountRepository::class);
 }
 
     /**

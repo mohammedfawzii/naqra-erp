@@ -4,11 +4,11 @@ namespace Modules\Employee\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Modules\Employee\Database\Factories\BaseModelFactory;
+  use Spatie\Translatable\HasTranslations;
 
 class BaseModel extends Model
 {
-    use HasFactory;
+    use HasFactory,HasTranslations;
 
     /**
      * The attributes that are mass assignable.
