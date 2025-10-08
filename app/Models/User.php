@@ -31,6 +31,12 @@ class User extends Authenticatable implements JWTSubject
             'db_name' =>$this->domine ? $this->domine->db_name : null,
         ];
     }
+
+    public function getIsFullyVerifiedAttribute($value)
+{
+    return (bool) $value;
+}
+
  
     /**
      * The attributes that are mass assignable.

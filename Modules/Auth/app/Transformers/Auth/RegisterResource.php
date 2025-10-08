@@ -18,7 +18,7 @@ class RegisterResource extends JsonResource
             'fullName' => $this->fullName,
             'email' => $this->email,
             'phone' => $this->phone,
-             'is_verified' => (bool) $this->is_verified,
+            'is_verified' => (bool) $this->is_verified,
             'two_factor' =>[
             'email_otp'  => $this->two_factor['email_otp'] ?? null,
             'sms_otp'    => $this->two_factor['sms_otp'] ?? null,
