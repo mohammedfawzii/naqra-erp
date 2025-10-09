@@ -8,7 +8,7 @@ use Modules\CmsErp\Models\MedicalInsuranceCategorie;
 
 // use Modules\Facilities\Database\Factories\MedicalInsurancesFacilitiesFactory;
 
-class MedicalInsurancesFacilities extends Model
+class MedicalInsurancesFacilities extends BaseModel
 {
     use HasFactory;
 

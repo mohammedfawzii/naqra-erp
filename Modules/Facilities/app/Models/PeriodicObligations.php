@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Facilities\Database\Factories\PeriodicObligationsFactory;
 
-class periodicObligations extends Model
+class PeriodicObligations extends BaseModel
 {
     use HasFactory;
 
@@ -25,5 +25,11 @@ class periodicObligations extends Model
     {
         return $this->belongsTo(FacilityAttachments::class, 'facility_attachments_id','reference_number');
     }
+
+
+    // public function facility()
+    // {
+    //     return $this->belongsTo(facility::class, 'facility_id');
+    // }
 
 }

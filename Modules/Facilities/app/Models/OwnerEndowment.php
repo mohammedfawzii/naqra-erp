@@ -19,4 +19,10 @@ class OwnerEndowment extends Model
     // {
     //     // return OwnerEndowmentFactory::new();
     // }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class, 'owner_id');
+    }
+
 }

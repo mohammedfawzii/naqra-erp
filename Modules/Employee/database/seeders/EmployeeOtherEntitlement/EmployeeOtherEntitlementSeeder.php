@@ -17,13 +17,13 @@ class EmployeeOtherEntitlementSeeder extends Seeder
                 'note' => 'Sample note 1',
             ],
             [
-                'employee_id' => 3,
+                'employee_id' => 1,
                 'entitlement_name' => 'Sample entitlement_name 2',
                 'amount' => 66.27,
                 'note' => 'Sample note 2',
             ],
             [
-                'employee_id' => 3,
+                'employee_id' => 1,
                 'entitlement_name' => 'Sample entitlement_name 3',
                 'amount' => 27.90,
                 'note' => 'Sample note 3',
@@ -35,7 +35,7 @@ class EmployeeOtherEntitlementSeeder extends Seeder
                 'note' => 'Sample note 4',
             ],
             [
-                'employee_id' => 3,
+                'employee_id' => 1,
                 'entitlement_name' => 'Sample entitlement_name 5',
                 'amount' => 63.76,
                 'note' => 'Sample note 5',

@@ -25,11 +25,12 @@ class DatabaseSeeder extends Seeder
             CmsErpDatabaseSeeder::class,
             FacilitiesDatabaseSeeder::class,
             EmployeeDatabaseSeeder::class,
-            PayrollDatabaseSeeder::class,
-            AttendanceTrackingDatabaseSeeder::class,
-            // RecruitmentDatabaseSeeder::class,
-            PerformanceDatabaseSeeder::class,
-            TrainingDatabaseSeeder::class
+
+            // PayrollDatabaseSeeder::class,
+            // AttendanceTrackingDatabaseSeeder::class,
+            // // RecruitmentDatabaseSeeder::class,
+            // PerformanceDatabaseSeeder::class,
+            // TrainingDatabaseSeeder::class
         ]);
 
     }

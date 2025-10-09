@@ -4,9 +4,11 @@ namespace Modules\Facilities\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\CmsErp\Models\Nationality;
+
 // use Modules\Facilities\Database\Factories\OwnerSaudiIndividualFactory;
 
-class OwnerSaudiIndividual extends Model
+class OwnerSaudiIndividual extends BaseModel
 {
     use HasFactory;
 
@@ -19,4 +21,16 @@ class OwnerSaudiIndividual extends Model
     // {
     //     // return OwnerSaudiIndividualFactory::new();
     // }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class, 'owner_id');
+    }
+
+
+    public function national()
+    {
+        return $this->belongsTo(Nationality::class, 'national_id');
+    }
+
 }

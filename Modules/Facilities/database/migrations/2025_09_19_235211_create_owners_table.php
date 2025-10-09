@@ -5,27 +5,21 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('facility_id')->nullable();
-
             $table->enum('owner_type', [
-                'association',        // جمعية
-                'foreign_company',    // شركة أجنبية
-                'saudi_individual',   // فرد سعودي
-                'gulf_individual',    // فرد خليجي
-                'resident_individual',// فرد مقيم
-                'saudi_company',      // شركة سعودية
-                'gulf_company',       // شركة خليجية
-                'endowment'           // وقف
+                'association',
+                'foreign_company',
+                'saudi_individual',
+                'gulf_individual',
+                'resident_individual',
+                'saudi_company',
+                'gulf_company',
+                'endowment'
             ])->nullable();
-
             $table->timestamps();
 
             $table->foreign('facility_id')
@@ -35,9 +29,6 @@ return new class extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('owners');

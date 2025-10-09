@@ -11,7 +11,7 @@ class FacilitiesSeeder extends Seeder
     {
         $facilities = [
             [
-                'name' => 'Sample name 1',
+                'name' => '{}',
                 'have_branches' => 1,
                 'employee_count' => 6,
                 'national_number_alone' => '1',
@@ -20,7 +20,7 @@ class FacilitiesSeeder extends Seeder
                 'completion_percentage' => 1,
             ],
             [
-                'name' => 'Sample name 2',
+                'name' => '{}',
                 'have_branches' => 1,
                 'employee_count' => 6,
                 'national_number_alone' => '2',
@@ -29,7 +29,7 @@ class FacilitiesSeeder extends Seeder
                 'completion_percentage' => 9,
             ],
             [
-                'name' => 'Sample name 3',
+                'name' => '{}',
                 'have_branches' => 1,
                 'employee_count' => 6,
                 'national_number_alone' => '3',
@@ -38,7 +38,7 @@ class FacilitiesSeeder extends Seeder
                 'completion_percentage' => 4,
             ],
             [
-                'name' => 'Sample name 4',
+                'name' => '{}',
                 'have_branches' => 1,
                 'employee_count' => 9,
                 'national_number_alone' => '4',
@@ -47,7 +47,7 @@ class FacilitiesSeeder extends Seeder
                 'completion_percentage' => 4,
             ],
             [
-                'name' => 'Sample name 5',
+                'name' => '{}',
                 'have_branches' => 1,
                 'employee_count' => 7,
                 'national_number_alone' => '5',

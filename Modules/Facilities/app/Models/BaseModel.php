@@ -28,4 +28,9 @@ class BaseModel extends Model
     {
         return $this->morphMany(EmployeeAttachment::class, 'attachable');
     }
+
+      public function facility()
+    {
+        return $this->belongsTo(facilities::class, 'facility_id');
+    }
 }

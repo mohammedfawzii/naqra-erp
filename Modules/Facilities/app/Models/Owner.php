@@ -12,7 +12,7 @@ use Modules\CmsErp\Models\OwnershipType;
 
 // use Modules\Facilities\Database\Factories\OwnerFactory;
 
-class owner extends Model
+class Owner extends Model
 {
     use HasFactory;
 
@@ -52,6 +52,12 @@ class owner extends Model
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
+    }
+
+
+    public function facility()
+    {
+        return $this->belongsTo(Facilities::class, 'facility_id');
     }
 
 }

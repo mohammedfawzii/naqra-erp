@@ -1,54 +1,50 @@
 <?php
 
 namespace Modules\Facilities\Providers;
-
-use Modules\Facilities\Repositories\MedicalInsurancesFacilities\MedicalInsurancesFacilitiesRepositoryInterface;
-use Modules\Facilities\Repositories\MedicalInsurancesFacilities\MedicalInsurancesFacilitiesRepository;
-
-use Modules\Facilities\Repositories\MedicalInsuranceFacilities\MedicalInsuranceFacilitiesRepositoryInterface;
-use Modules\Facilities\Repositories\MedicalInsuranceFacilities\MedicalInsuranceFacilitiesRepository;
-
-use Modules\Facilities\Repositories\MedicalInsuranceCategories\MedicalInsuranceCategoriesRepositoryInterface;
-use Modules\Facilities\Repositories\MedicalInsuranceCategories\MedicalInsuranceCategoriesRepository;
-
-use Modules\Facilities\Repositories\periodicObligations\periodicObligationsRepositoryInterface;
-use Modules\Facilities\Repositories\periodicObligations\periodicObligationsRepository;
-
+ 
 use Modules\Facilities\Repositories\SubscriptionFacilities\SubscriptionFacilitiesRepositoryInterface;
 use Modules\Facilities\Repositories\SubscriptionFacilities\SubscriptionFacilitiesRepository;
+use Modules\Facilities\Repositories\OwnerForeignCompany\OwnerForeignCompanyRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerForeignCompany\OwnerForeignCompanyRepository;
+use Modules\Facilities\Repositories\OwnerEndowment\OwnerEndowmentRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerEndowment\OwnerEndowmentRepository;
+use Modules\Facilities\Repositories\OwnerGulfCompany\OwnerGulfCompanyRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerGulfCompany\OwnerGulfCompanyRepository;
+use Modules\Facilities\Repositories\OwnerResident\OwnerResidentRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerResident\OwnerResidentRepository;
+use Modules\Facilities\Repositories\OwnerGulf\OwnerGulfRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerGulf\OwnerGulfRepository;
 
-use Modules\Facilities\Repositories\License\LicenseRepositoryInterface;
-use Modules\Facilities\Repositories\License\LicenseRepository;
+use Modules\Facilities\Repositories\OwnerSaudiIndividual\OwnerSaudiIndividualRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerSaudiIndividual\OwnerSaudiIndividualRepository;
 
-use Modules\Facilities\Repositories\Branches\BranchesRepositoryInterface;
-use Modules\Facilities\Repositories\Branches\BranchesRepository;
-
-use Modules\Facilities\Repositories\DigitalFacility\DigitalFacilityRepositoryInterface;
-use Modules\Facilities\Repositories\DigitalFacility\DigitalFacilityRepository;
-
-use Modules\Facilities\Repositories\FacilityDigital\FacilityDigitalRepositoryInterface;
-use Modules\Facilities\Repositories\FacilityDigital\FacilityDigitalRepository;
-
-use Modules\Facilities\Repositories\FacilityAttachments\FacilityAttachmentsRepositoryInterface;
-use Modules\Facilities\Repositories\FacilityAttachments\FacilityAttachmentsRepository;
-
-use Modules\Facilities\Repositories\FacilityFile\FacilityFileRepositoryInterface;
-use Modules\Facilities\Repositories\FacilityFile\FacilityFileRepository;
+use Modules\Facilities\Repositories\OwnerAssociation\OwnerAssociationRepositoryInterface;
+use Modules\Facilities\Repositories\OwnerAssociation\OwnerAssociationRepository;
 
 use Modules\Facilities\Repositories\Owner\OwnerRepositoryInterface;
 use Modules\Facilities\Repositories\Owner\OwnerRepository;
 
+use Modules\Facilities\Repositories\Branch\BranchRepositoryInterface;
+use Modules\Facilities\Repositories\Branch\BranchRepository;
+
+use Modules\Facilities\Repositories\Branches\BranchesRepositoryInterface;
+use Modules\Facilities\Repositories\Branches\BranchesRepository;
+
+
 use Modules\Facilities\Repositories\Facilities\FacilitiesRepositoryInterface;
 use Modules\Facilities\Repositories\Facilities\FacilitiesRepository;
 
-use Modules\Facilities\Repositories\Fatama\FatamaRepositoryInterface;
-use Modules\Facilities\Repositories\Fatama\FatamaRepository;
-
-use Modules\Facilities\Repositories\User\UserRepositoryInterface;
-use Modules\Facilities\Repositories\User\UserRepository;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\CmsErp\Repositories\MedicalInsurance\MedicalInsuranceRepository;
+use Modules\CmsErp\Repositories\MedicalInsurance\MedicalInsuranceRepositoryInterface;
+use Modules\Facilities\Repositories\DigitalFacility\DigitalFacilityRepository;
+use Modules\Facilities\Repositories\DigitalFacility\DigitalFacilityRepositoryInterface;
+use Modules\Facilities\Repositories\MedicalInsurancesFacilities\MedicalInsurancesFacilitiesRepository;
+use Modules\Facilities\Repositories\MedicalInsurancesFacilities\MedicalInsurancesFacilitiesRepositoryInterface;
+use Modules\Facilities\Repositories\PeriodicObligations\PeriodicObligationsRepository;
+use Modules\Facilities\Repositories\PeriodicObligations\PeriodicObligationsRepositoryInterface;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -78,23 +74,24 @@ class FacilitiesServiceProvider extends ServiceProvider
      * Register the service provider.
      */
     public function register(): void {
-$this->app->register(EventServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->bind(FacilitiesRepositoryInterface::class, FacilitiesRepository::class);
-        $this->app->bind(OwnerRepositoryInterface::class, OwnerRepository::class);
-        $this->app->bind(FacilityFileRepositoryInterface::class, FacilityFileRepository::class);
-        $this->app->bind(FacilityAttachmentsRepositoryInterface::class, FacilityAttachmentsRepository::class);
-        $this->app->bind(FacilityDigitalRepositoryInterface::class, FacilityDigitalRepository::class);
         $this->app->bind(DigitalFacilityRepositoryInterface::class, DigitalFacilityRepository::class);
+        $this->app->bind(FacilitiesRepositoryInterface::class, FacilitiesRepository::class);
+        $this->app->bind(SubscriptionFacilitiesRepositoryInterface::class,SubscriptionFacilitiesRepository::class);
         $this->app->bind(BranchesRepositoryInterface::class, BranchesRepository::class);
-        $this->app->bind(LicenseRepositoryInterface::class, LicenseRepository::class);
-        $this->app->bind(SubscriptionFacilitiesRepositoryInterface::class, SubscriptionFacilitiesRepository::class);
-        $this->app->bind(periodicObligationsRepositoryInterface::class, periodicObligationsRepository::class);
-        $this->app->bind(MedicalInsuranceCategoriesRepositoryInterface::class, MedicalInsuranceCategoriesRepository::class);
-        $this->app->bind(MedicalInsuranceFacilitiesRepositoryInterface::class, MedicalInsuranceFacilitiesRepository::class);
-        $this->app->bind(MedicalInsurancesFacilitiesRepositoryInterface::class, MedicalInsurancesFacilitiesRepository::class);
-}
+        $this->app->bind(BranchRepositoryInterface::class, BranchRepository::class);
+        $this->app->bind(OwnerRepositoryInterface::class, OwnerRepository::class);
+        $this->app->bind(OwnerAssociationRepositoryInterface::class, OwnerAssociationRepository::class);
+        $this->app->bind(OwnerSaudiIndividualRepositoryInterface::class, OwnerSaudiIndividualRepository::class);
+        $this->app->bind(OwnerGulfRepositoryInterface::class, OwnerGulfRepository::class);
+        $this->app->bind(OwnerResidentRepositoryInterface::class, OwnerResidentRepository::class);
+        $this->app->bind(OwnerGulfCompanyRepositoryInterface::class, OwnerGulfCompanyRepository::class);
+        $this->app->bind(OwnerEndowmentRepositoryInterface::class, OwnerEndowmentRepository::class);
+        $this->app->bind(OwnerForeignCompanyRepositoryInterface::class, OwnerForeignCompanyRepository::class);
+        $this->app->bind(PeriodicObligationsRepositoryInterface::class,PeriodicObligationsRepository::class);
+         $this->app->bind(MedicalInsurancesFacilitiesRepositoryInterface::class,MedicalInsurancesFacilitiesRepository::class);
+   }    
 
     /**
      * Register commands in the format of Command::class

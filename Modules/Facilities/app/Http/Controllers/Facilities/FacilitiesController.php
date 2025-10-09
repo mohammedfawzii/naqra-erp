@@ -2,74 +2,93 @@
 
 namespace Modules\Facilities\Http\Controllers\Facilities;
 
-use Modules\Facilities\Repositories\Facilities\FacilitiesRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Modules\Facilities\Repositories\Facilities\FacilitiesRepositoryInterface;
 use Modules\Facilities\Transformers\BaseCollection\BaseCollection;
-use Modules\Facilities\Http\Requests\Facilities\FacilitiesStoreRequest;
-use Modules\Facilities\Http\Requests\Facilities\FacilitiesUpdateRequest;
 use Modules\Facilities\Transformers\Facilities\FacilitiesResource;
 use Modules\Facilities\Transformers\Facilities\FacilitiesResourceEnums;
-use App\Services\AttachmentService\AttachmentService;
-use Modules\Employee\Services\EmployeeCompletionService;
-
+use Modules\Facilities\Http\Requests\Facilities\FacilitiesStoreRequest;
+use Modules\Facilities\Http\Requests\Facilities\FacilitiesUpdateRequest;
 
 class FacilitiesController extends Controller
 {
     use ApiResponseTrait;
- 
-    protected $FacilitiesRepository;
 
-    public function __construct(FacilitiesRepositoryInterface $FacilitiesRepository)
+    protected FacilitiesRepositoryInterface $facilitiesRepository;
+
+    public function __construct(FacilitiesRepositoryInterface $facilitiesRepository)
     {
-        $this->FacilitiesRepository = $FacilitiesRepository;
+        $this->facilitiesRepository = $facilitiesRepository;
     }
 
     public function index(Request $request)
     {
-     return $request->boolean('list')
-      ? $this->successResponse(new FacilitiesResourceEnums([]),'Facilities enums retrieved successfully')
-      : $this->successResponse(
-         new BaseCollection($this->FacilitiesRepository->all(), 'facilities', FacilitiesResource::class),
-         'Facilities list retrieved successfully'
+        if ($request->boolean('list')) {
+            return $this->successResponse(
+                new FacilitiesResourceEnums([]),
+                'Facilities enums retrieved successfully'
             );
+        }
+
+        $facilities = $this->facilitiesRepository->all();
+
+        return $this->successResponse(
+            new BaseCollection($facilities, 'facilities', FacilitiesResource::class),
+            'Facilities list retrieved successfully'
+        );
     }
 
     public function show($id)
     {
-        $data = $this->FacilitiesRepository->find($id);
-        if (!$data) {
-            return $this->errorResponse('Facilities not found', 404);
+        $facility = $this->facilitiesRepository->find($id);
+
+        if (!$facility) {
+            return $this->errorResponse('Facility not found', 404);
         }
-        return $this->successResponse(new FacilitiesResource($data), 'Facilities retrieved successfully');
+
+        return $this->successResponse(
+            new FacilitiesResource($facility),
+            'Facility retrieved successfully'
+        );
     }
 
-    public function store(FacilitiesStoreRequest $request )
+    public function store(FacilitiesStoreRequest $request)
     {
-        $validated = $request->validated();
-        $record = $this->FacilitiesRepository->create($validated);
-        return $this->successResponse(new FacilitiesResource($record), 'Facilities created successfully', 201);
+        $record = $this->facilitiesRepository->create($request->validated());
+
+        return $this->successResponse(
+            new FacilitiesResource($record),
+            'Facility created successfully',
+            201
+        );
     }
 
-    public function update(FacilitiesUpdateRequest $request, $id )
+    public function update(FacilitiesUpdateRequest $request, $id)
     {
-        $validated = $request->validated();
-        $record = $this->FacilitiesRepository->update($id, $validated);
-        return $this->successResponse(new FacilitiesResource($record), 'Facilities updated successfully');
+        $record = $this->facilitiesRepository->update($id, $request->validated());
+
+        return $this->successResponse(
+            new FacilitiesResource($record),
+            'Facility updated successfully'
+        );
     }
 
-    public function destroy($id, Request $request)
+    public function destroy(Request $request, $id = null)
     {
-        $ids = $request->input('ids', []);
+        $ids = $request->input('ids', $id ? [$id] : []);
+
         if (is_string($ids)) {
             $ids = json_decode($ids, true);
         }
-        if (!is_array($ids)) {
-            return $this->errorResponse('IDs must be an array', 400);
+        if (!is_array($ids) || empty($ids)) {
+            return $this->errorResponse('IDs must be an array or a valid ID must be provided', 400);
         }
-        $deletedCount = $this->FacilitiesRepository->deleteWithAttachments($ids);
-
-        return $this->successResponse(null, "{$deletedCount} Facilities deleted successfully");
+        $deletedCount = $this->facilitiesRepository->deleteWithAttachments($ids);
+        return $this->successResponse(
+            null,
+            "{$deletedCount} facilities deleted successfully"
+        );
     }
 }

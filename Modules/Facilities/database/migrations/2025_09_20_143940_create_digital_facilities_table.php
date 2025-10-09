@@ -22,6 +22,8 @@ return new class extends Migration {
             $table->date('annual_confirmation_date');
             $table->date('financial_year_start');
             $table->date('financial_year_end');
+            $table->integer('facility_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
 

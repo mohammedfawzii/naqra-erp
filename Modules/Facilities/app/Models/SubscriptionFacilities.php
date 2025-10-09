@@ -9,7 +9,7 @@ use Modules\CmsErp\Models\SubscriptionType;
 
 // use Modules\Facilities\Database\Factories\SubscriptionFacilitiesFactory;
 
-class SubscriptionFacilities extends Model
+class SubscriptionFacilities extends BaseModel
 {
     use HasFactory;
 
@@ -41,6 +41,12 @@ class SubscriptionFacilities extends Model
     public function facilityAttachments()
     {
         return $this->belongsTo(FacilityAttachments::class, 'facility_attachments_id','reference_number');
+    }
+
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
 }

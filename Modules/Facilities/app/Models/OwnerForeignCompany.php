@@ -19,4 +19,10 @@ class OwnerForeignCompany extends Model
     // {
     //     // return OwnerForeignCompanyFactory::new();
     // }
+
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class, 'owner_id');
+    }
+
 }
