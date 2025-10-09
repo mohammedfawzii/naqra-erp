@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->string('gpa');
             $table->year('graduation_year');
             $table->text('notes')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');

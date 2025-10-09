@@ -31,6 +31,7 @@ return new class extends Migration {
             $table->text('responsibilities')->nullable();
 
             $table->text('notes')->nullable();
+            $table->integer('employee_attachments_id')->nullable();
 
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');

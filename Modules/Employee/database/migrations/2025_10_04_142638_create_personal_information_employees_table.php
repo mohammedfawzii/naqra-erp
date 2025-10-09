@@ -58,6 +58,8 @@ return new class extends Migration {
 
             // Document Attachment
             $table->string('document_type')->nullable();
+            $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');

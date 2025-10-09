@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeMedicalRecord;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeMedicalRecordResource
  */
-class EmployeeMedicalRecordResource extends JsonResource
+class EmployeeMedicalRecordResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                    return $this->mergeWithTimestamps([
+
             'employee_id' => $this->employee_id,
             'certificate_number' => $this->certificate_number,
             'certificate_value' => $this->certificate_value,
@@ -26,8 +27,7 @@ class EmployeeMedicalRecordResource extends JsonResource
             'chronic_disease' => $this->chronic_disease,
             'blood_type' => $this->blood_type,
             'medical_condition' => $this->medical_condition,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+           
+        ]);
     }
 }

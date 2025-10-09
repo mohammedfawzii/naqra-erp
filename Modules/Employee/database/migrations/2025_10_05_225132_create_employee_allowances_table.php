@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('employee_id');
             $table->string('entitlement_name'); 
             $table->decimal('amount', 10, 2);
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')
                 ->references('id')

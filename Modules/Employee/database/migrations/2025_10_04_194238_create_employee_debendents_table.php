@@ -42,6 +42,7 @@ return new class extends Migration {
 
             // Other
             $table->text('notes')->nullable();
+            $table->integer('employee_attachments_id')->nullable();
 
             $table->timestamps();
 

@@ -34,6 +34,7 @@ return new class extends Migration {
 
             // Indicates if permanent address is same as current
             $table->boolean('same_address')->default(true); // fixed value
+            $table->integer('employee_attachments_id')->nullable();
 
             $table->timestamps();
 

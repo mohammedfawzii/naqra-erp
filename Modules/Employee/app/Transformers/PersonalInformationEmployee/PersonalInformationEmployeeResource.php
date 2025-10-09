@@ -13,8 +13,7 @@ class PersonalInformationEmployeeResource extends BaseResource
         return array_merge(
             $this->baseArray(),
             [
-            'id' => $resource->id,
-            'employee' => $resource->employee?->employee_id ?? null,
+             'employee' => $resource->employee?->employee_id ?? null,
             'first_name' => $resource->getTranslation('first_name', app()->getLocale()),
             'second_name' => $resource->getTranslation('second_name', app()->getLocale()),
             'therd_name' => $resource->getTranslation('therd_name', app()->getLocale()),
@@ -43,8 +42,7 @@ class PersonalInformationEmployeeResource extends BaseResource
             'iqama_expiry_date' => $resource->iqama_expiry_date,
             'iqama_fee' => $resource->iqama_fee,
             'document_type' => $resource->document_type,
-            'created_at' => $resource->created_at,
-            'updated_at' => $resource->updated_at,
+             
             ],
             $this->timestampsArray()
         );

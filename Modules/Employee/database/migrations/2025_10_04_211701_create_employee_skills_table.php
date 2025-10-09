@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('skill');
             $table->string('skill_level')->nullable();
             $table->date('date')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });

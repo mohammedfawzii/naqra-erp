@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('cost_center')->nullable();
             $table->string('salary_payment_method')->nullable();
             $table->unsignedBigInteger('bank_id')->nullable();
+            $table->integer('employee_attachments_id')->nullable();
 
             $table->timestamps();
 

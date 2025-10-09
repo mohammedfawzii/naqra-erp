@@ -3,7 +3,9 @@
 namespace Modules\CmsErp\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\CmsErp\Database\Seeders\SalaryTypeSeeder;
 use Modules\CmsErp\Database\Seeders\Setting\SettingSeeder;
+use Modules\CmsErp\Database\Seeders\MedicalInsuranceCategorieSeeder;
 
 class CmsErpDatabaseSeeder extends Seeder
 {
@@ -33,6 +35,8 @@ class CmsErpDatabaseSeeder extends Seeder
             Language\LanguageSeeder::class,
             CurrencySeeder::class,
             HolidayListSeeder::class,
+            MedicalInsuranceCategorieSeeder::class,
+            SalaryTypeSeeder::class,
         ]);
     }
 }

@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->string('entitlement_name');
             $table->decimal('amount', 10, 2);
             $table->text('note')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')
                 ->references('id')

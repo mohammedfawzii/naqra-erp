@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeAddress;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeAddressResource
  */
-class EmployeeAddressResource extends JsonResource
+class EmployeeAddressResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                return $this->mergeWithTimestamps([
+
             'employee_id' => $this->employee_id,
             'type' => $this->type,
             'country_id' => $this->country_id,
@@ -26,8 +27,7 @@ class EmployeeAddressResource extends JsonResource
             'po_box' => $this->po_box,
             'notes' => $this->notes,
             'same_address' => $this->same_address,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+             
+        ]);
     }
 }

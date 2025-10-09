@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->integer('basic_hours');
             $table->integer('attendance_device_id');
             $table->string('shift_change');
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
         });
     }

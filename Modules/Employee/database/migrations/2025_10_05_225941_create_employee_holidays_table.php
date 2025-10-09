@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('holiday_list_id');
             $table->string('status');
             $table->json('list')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('holiday_list_id')->references('id')->on('holiday_lists')->onDelete('cascade');

@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeContact;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeContactResource
  */
-class EmployeeContactResource extends JsonResource
+class EmployeeContactResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                  return $this->mergeWithTimestamps([
+
             'employee_id' => $this->employee_id,
             'personal_email' => $this->personal_email,
             'company_email' => $this->company_email,
@@ -26,8 +27,7 @@ class EmployeeContactResource extends JsonResource
             'company_name' => $this->company_name,
             'company_phone' => $this->company_phone,
             'notes' => $this->notes,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+          
+        ]);
     }
 }

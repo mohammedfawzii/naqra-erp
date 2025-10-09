@@ -37,6 +37,8 @@ return new class extends Migration {
             $table->integer('hours_count')->nullable();
 
             $table->text('notes')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');

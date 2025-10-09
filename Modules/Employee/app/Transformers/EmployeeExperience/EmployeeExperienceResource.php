@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeExperience;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeExperienceResource
  */
-class EmployeeExperienceResource extends JsonResource
+class EmployeeExperienceResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                return $this->mergeWithTimestamps([
+
             'employee_id' => $this->employee_id,
             'entity_name' => $this->entity_name,
             'job_title' => $this->job_title,
@@ -25,8 +26,7 @@ class EmployeeExperienceResource extends JsonResource
             'leaving_reason' => $this->leaving_reason,
             'responsibilities' => $this->responsibilities,
             'notes' => $this->notes,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+            
+        ]);
     }
 }

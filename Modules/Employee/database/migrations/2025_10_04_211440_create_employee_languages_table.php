@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string('writing_level')->nullable();
             $table->string('reading_level')->nullable();
             $table->string('speaking_level')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });

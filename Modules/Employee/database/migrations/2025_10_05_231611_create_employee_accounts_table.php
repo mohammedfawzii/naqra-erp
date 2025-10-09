@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->enum('approved', ['yes', 'no'])->default('no');
 
             $table->boolean('send_login_email')->default(false);
+            $table->integer('employee_attachments_id')->nullable();
 
             $table->timestamps();
         });

@@ -25,6 +25,8 @@ return new class extends Migration {
             $table->string('company_name')->nullable();
             $table->string('company_phone', 20)->nullable();
             $table->text('notes')->nullable();
+                        $table->integer('employee_attachments_id')->nullable();
+
             $table->timestamps();
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });

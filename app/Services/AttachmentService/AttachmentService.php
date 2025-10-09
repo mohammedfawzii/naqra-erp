@@ -9,6 +9,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class AttachmentService
 {
@@ -29,9 +30,7 @@ public function uploadFiles(array|UploadedFile|null $files, Model $model, string
      if (empty($files)) {
         return [];
     }
-
      $files = is_array($files) ? $files : [$files];
-
     $attachments = [];
 
     if (!method_exists($model, 'attachments')) {
@@ -43,7 +42,7 @@ public function uploadFiles(array|UploadedFile|null $files, Model $model, string
 
     foreach ($files as $file) {
         if (!$file instanceof UploadedFile) {
-            continue; // تجاهل أي عنصر غير صحيح
+            continue; 
         }
 
         $folder = "{$this->safeModuleName($module)}/" . strtolower(class_basename($model));
@@ -60,7 +59,7 @@ public function uploadFiles(array|UploadedFile|null $files, Model $model, string
 
             $attachments[] = $this->formatAttachment($attachment, $path);
         } catch (Exception $e) {
-            report($e); // سجل الخطأ ولكن لا توقف التطبيق
+            report($e);  
         }
     }
 

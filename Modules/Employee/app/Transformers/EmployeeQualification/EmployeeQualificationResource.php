@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeQualification;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeQualificationResource
  */
-class EmployeeQualificationResource extends JsonResource
+class EmployeeQualificationResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                    return $this->mergeWithTimestamps([
+
             'country_id' => $this->country_id,
             'city_id' => $this->city_id,
             'university' => $this->university,
@@ -23,8 +24,7 @@ class EmployeeQualificationResource extends JsonResource
             'gpa' => $this->gpa,
             'graduation_year' => $this->graduation_year,
             'notes' => $this->notes,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+       
+        ]);
     }
 }

@@ -1,14 +1,13 @@
 <?php
 
 namespace Modules\Employee\Transformers\EmployeeDebendent;
- use Modules\Employee\Transformers\BaseResource\BaseResource;
-class EmployeeDebendentResource extends BaseResource
+
+use App\Transformers\BaseResource\BaseMetaResource;
+ class EmployeeDebendentResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
-            'ss'=>'ss',
+        return $this->mergeWithTimestamps([
             'employee_id' => $this->employee_id,
             'full_name' => $this->full_name,
             'relationship' => $this->relationship,
@@ -27,8 +26,8 @@ class EmployeeDebendentResource extends BaseResource
             'health_status' => $this->health_status,
             'medical_test_status' => $this->medical_test_status,
             'notes' => $this->notes,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+            
+         ],
+         );
     }
 }

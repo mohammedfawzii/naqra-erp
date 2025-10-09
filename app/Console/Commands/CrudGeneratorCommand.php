@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Services\ApiRouteService;
 use App\Services\ColumnSyncService;
 use App\Services\ControllerGenerator;
+use App\Services\ControllerGeneratorDRY;
 use App\Services\InfoSyncService;
 use App\Services\ModuleSeederService;
 use App\Services\ProviderBindService;
@@ -30,30 +31,31 @@ protected $signature = 'crud:generate {module} {model} {seed?}';
 
 
 
-                 RepositoryGenerator::generate($module, $model);
+                //  RepositoryGenerator::generate($module, $model);
                 // Generate Request Validation
-                RequestGenerator::make($module, $model);
+                // RequestGenerator::make($module, $model);
                 // Generate Controller
-                ControllerGenerator::make($module, $model);
+                // ControllerGenerator::make($module, $model);
                 // Generate Resource
-                ResourceGenerator::make($module, $model);
+                // ResourceGenerator::make($module, $model);
                 // Generate Api Resource
-                ApiRouteService::make($module, $model);
+                // ApiRouteService::make($module, $model);
                 // Generate Bind Repository
-                ProviderBindService::make($module, $model);
+                // ProviderBindService::make($module, $model);
 
 
                 // Sync Columns
-                ColumnSyncService::make($module, $model);
+                // ColumnSyncService::make($module, $model);
                 // infoSyncService
-                InfoSyncService::make($module, $model);
+                // InfoSyncService::make($module, $model);
 
 
 
                 // Generate Seeder
-                ModuleSeederService::make($module, $model);
+                // ModuleSeederService::make($module, $model);
 
-
+                //    ControllerGeneratorDRY,
+                   ControllerGeneratorDRY::make($module,$model);
 
                 $this->info("CRUD generated for {$model} inside Module {$module}");
 
@@ -62,7 +64,7 @@ protected $signature = 'crud:generate {module} {model} {seed?}';
                 $this->info('Artisan optimize executed successfully.');
 
                 // Sync Info
-                InfoSyncService::make($module, $model);
+                // InfoSyncService::make($module, $model);
                 // RelationSyncService::make($module, $model);
 
                 $this->info("CRUD generated for {$model} inside Module {$module}");

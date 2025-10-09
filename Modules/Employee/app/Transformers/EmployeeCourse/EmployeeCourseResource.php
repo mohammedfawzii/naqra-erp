@@ -2,17 +2,18 @@
 
 namespace Modules\Employee\Transformers\EmployeeCourse;
 
+use App\Transformers\BaseResource\BaseMetaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * 🔹 EmployeeCourseResource
  */
-class EmployeeCourseResource extends JsonResource
+class EmployeeCourseResource extends BaseMetaResource
 {
     public function toArray($request): array
     {
-        return [
-            'id' => $this->id,
+                    return $this->mergeWithTimestamps([
+
             'employee_id' => $this->employee_id,
             'course_name' => $this->course_name,
             'course_type' => $this->course_type,
@@ -34,8 +35,7 @@ class EmployeeCourseResource extends JsonResource
             'grade' => $this->grade,
             'hours_count' => $this->hours_count,
             'notes' => $this->notes,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ];
+           
+        ]);
     }
 }

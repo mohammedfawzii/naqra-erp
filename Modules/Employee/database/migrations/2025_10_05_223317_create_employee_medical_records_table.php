@@ -25,7 +25,9 @@ return new class extends Migration {
             $table->string('medical_insurance_value')->nullable();      
             $table->string('chronic_disease')->nullable();              
             $table->string('blood_type')->nullable();             
-            $table->string('medical_condition')->nullable();           
+            $table->string('medical_condition')->nullable();  
+                        $table->integer('employee_attachments_id')->nullable();
+         
             $table->timestamps();
 
             $table->foreign('medical_insurance_category_id')

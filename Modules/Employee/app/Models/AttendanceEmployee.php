@@ -22,7 +22,7 @@ class AttendanceEmployee extends Model
 
     public function attendanceDevice()
     {
-        return $this->belongsTo(AttendanceDevice::class, 'attendance_device_id');
+        return $this->belongsTo(attendanceDevice::class, 'attendance_device_id');
     }
 
 }
